@@ -84,8 +84,6 @@ notifica al usuario.
 
 🎨 5. URL del Prototipo
 
-Colocar aquí el enlace público de Figma:
-
 https://www.figma.com/design/sd05vEaKrdwzWAf4YQfHeh/MockUp-Design?node-id=12-1015&t=rn3aVEpOug3iFZ46-1
 
 
