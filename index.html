@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanControl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        :root{
+            
+        }
+
+        body {
+            background: #0f172a;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background: #0f172a;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #3b82f6;
+            position: relative;
+        }
+
+        .logo-icon span {
+            position: absolute;
+            bottom: 7px;
+            width: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .logo-icon span:nth-child(1) {
+            left: 11px;
+            height: 8px;
+        }
+
+        .logo-icon span:nth-child(2) {
+            left: 16px;
+            height: 12px;
+        }
+
+        .logo-icon span:nth-child(3) {
+            left: 21px;
+            height: 6px;
+        }
+
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            bottom: 7px;
+            width: 2px;
+            height: 14px;
+            background: white;
+        }
+
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            left: 7px;
+            bottom: 7px;
+            width: 18px;
+            height: 2px;
+            background: white;
+        }
+
+
+        nav a {
+            margin-left: 25px;
+            color: #cbd5f5;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 80px;
+            background: linear-gradient(135deg, #1e293b, #2563eb);
+        }
+
+        .hero-text {
+            max-width: 520px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            color: #cbd5f5;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons button {
+            margin-right: 15px;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-white {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-dark {
+            background: #1e40af;
+            color: #fff;
+        }
+
+        .hero-image {
+            width: 420px;
+            height: 260px;
+            background: #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .section {
+            padding: 100px 80px;
+            background: #f8fafc;
+            color: #0f172a;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            color: #6b7280;
+            margin-bottom: 50px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 14px;
+            width: 240px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .icon {
+            width: 45px;
+            height: 45px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 0 auto 15px;
+        }
+
+        .card h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .subtext {
+            color: #6b7280;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .step {
+            width: 22%;
+            text-align: left;
+        }
+
+        .step h3 {
+            font-size: 28px;
+            color: #cbd5f5;
+            margin-bottom: 10px;
+        }
+
+        .step h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .step p {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .security {
+            background: #0f172a;
+            padding: 100px 80px;
+            text-align: center;
+        }
+
+        .security h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .security p {
+            color: #94a3b8;
+            margin-bottom: 50px;
+        }
+
+        .security .cards {
+            gap: 25px;
+        }
+
+        .security .card {
+            background: #1e293b;
+            color: #fff;
+            box-shadow: none;
+        }
+
+        .security .card p {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            padding: 100px 80px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #cbd5f5;
+            margin-bottom: 25px;
+        }
+
+        .cta small {
+            display: block;
+            color: #cbd5f5;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .cta button {
+            padding: 14px 26px;
+            border: none;
+            border-radius: 10px;
+            background: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: #020617;
+            padding: 60px 80px;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: 14px;
+        }
+
+        .footer-left {
+            max-width: 300px;
+        }
+
+        .footer-columns {
+            display: flex;
+            gap: 60px;
+        }
+
+        .footer-columns h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .footer-columns p {
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        @media(max-width:900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-image {
+                margin-top: 40px;
+            }
+
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .step {
+                width: 100%;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            <span>FinanControl</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#">Acerca de</a></li>
+                <li> <a href="#">Iniciar Sesión</a></li>
+                <li> <a href="#" class="btn-primary">Crear Cuenta</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Controla tus finanzas de forma <span>inteligente y sencilla</span></h1>
+            <p>La plataforma todo-en-uno para gestionar tus gastos, definir metas y tomar decisiones financieras
+                informadas.</p>
+            <div class="hero-buttons">
+                <button class="btn-white">Crear Cuenta Gratis</button>
+                <button class="btn-dark">Iniciar Sesión</button>
+            </div>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <section class="section">
+        <h2>Todo lo que necesitas en un solo lugar</h2>
+        <p>Herramientas poderosas diseñadas para ayudarte a alcanzar tus metas financieras</p>
+        <div class="cards">
+            <div class="card">
+                <div class="icon"></div>
+                <h4>Control de Gastos</h4>
+                <p>Registra y categoriza cada transacción para saber exactamente a dónde va tu dinero.</p>
+            </div>
+            <div class="card">
+                <div class="icon"></div>
+                <h4>Reportes Automáticos</h4>
+                <p>Visualiza tu situación financiera con gráficos claros y detallados en tiempo real.</p>
+            </div>
+            <div class="card">
+                <div class="icon"></div>
+                <h4>Metas Inteligentes</h4>
+                <p>Define objetivos financieros claros y recibe recordatorios para cumplir tus ahorros.</p>
+            </div>
+            <div class="card">
+                <div class="icon"></div>
+                <h4>Gestión Familiar</h4>
+                <p>Administra las finanzas de tu familia en un solo lugar de forma colaborativa.</p>
+            </div>
+        </div>
+
+        <h2 style="margin-top:80px;">Comienza en minutos</h2>
+        <p class="subtext">Cuatro pasos simples para tomar el control total de tus finanzas</p>
+        <div class="steps">
+            <div class="step">
+                <h3>01</h3>
+                <h4>Registra tus ingresos</h4>
+                <p>Añade todas tus fuentes de ingresos y mantén un registro actualizado.</p>
+            </div>
+            <div class="step">
+                <h3>02</h3>
+                <h4>Analiza tus gastos</h4>
+                <p>Categoriza automáticamente tus gastos y descubre patrones de consumo.</p>
+            </div>
+            <div class="step">
+                <h3>03</h3>
+                <h4>Define tus metas</h4>
+                <p>Establece objetivos financieros claros con plazos y montos específicos.</p>
+            </div>
+            <div class="step">
+                <h3>04</h3>
+                <h4>Crece financieramente</h4>
+                <p>Toma decisiones informadas basadas en datos reales y alcanza tus objetivos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="security">
+        <h2>Tu información está protegida</h2>
+        <p>Implementamos los más altos estándares de seguridad para mantener tus datos seguros</p>
+        <div class="cards">
+            <div class="card">
+                <div class="icon"></div>
+                <h4>Encriptación Avanzada</h4>
+                <p>Tus datos están protegidos con encriptación de nivel bancario.</p>
+            </div>
+            <div class="card">
+                <div class="icon"></div>
+                <h4>Autenticación Segura</h4>
+                <p>Verificación en dos pasos y protección contra accesos no autorizados.</p>
+            </div>
+            <div class="card">
+                <div class="icon"></div>
+                <h4>Protección de Datos</h4>
+                <p>Cumplimos con las normativas internacionales de privacidad y seguridad.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Empieza hoy a tomar el control de tu dinero</h2>
+        <p>Únete a miles de usuarios que ya están mejorando su salud financiera</p>
+        <button>Crear Cuenta Gratis</button>
+        <small>No se requiere tarjeta de crédito • Configura tu cuenta en 2 minutos</small>
+    </section>
+
+    <footer>
+        <div class="footer-left">
+            <h3 style="color:white;margin-bottom:10px;">
+                <div class="nav">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        FinanControl
+                    </div>
+            </h3>
+            <p>La plataforma de gestión financiera personal que te ayuda a tomar decisiones inteligentes sobre tu
+                dinero.</p>
+        </div>
+        <div class="footer-columns">
+            <div>
+                <h4>Plataforma</h4>
+                <p>Acerca de</p>
+                <p>Características</p>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <p>Términos de Uso</p>
+                <p>Privacidad</p>
+                <p>Cookies</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
