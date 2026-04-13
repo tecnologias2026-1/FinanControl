@@ -98,24 +98,43 @@ En la carpeta principal del proyecto se encuentran los archivos HTML que represe
 Además, en esta misma carpeta se encuentran los archivos CSS que controlan la apariencia visual de cada módulo. Algunos estilos son compartidos, como estilos.css, mientras que otros son específicos para ciertas páginas, como DashboardEstilos.css, ReportesEstilos.css, TransaccionesEstilos.css, Style_Iniciar.css, Style_Inicio.css, Style_Registrarse.css y Style_Sobre.css.
 
 De acuerdo con la estructura actual del proyecto, los archivos principales son:
+
 auth.js: archivo JavaScript utilizado para funciones relacionadas con autenticación o redirecciones del sistema.
+
 Dashboard.html: vista principal del panel de control financiero.
+
 DashboardEstilos.css: hoja de estilos específica del dashboard.
+
 estilos.css: hoja de estilos compartida para páginas como metas, grupos y perfil.
+
 grupos.html: módulo para la gestión de grupos familiares.
+
 Iniciar.html: página de inicio de sesión.
+
 Inicio.html: página principal o landing page del sistema.
+
 metas.html: módulo para la administración de metas financieras.
+
 perfil.html: módulo de perfil del usuario.
+
 Registrarse.html: página para el registro de nuevos usuarios.
+
 Reportes.html: módulo de reportes financieros.
+
 ReportesEstilos.css: estilos específicos del módulo de reportes.
+
 Sobre.html: página informativa sobre el sistema.
+
 Style_Iniciar.css: estilos de la página de inicio de sesión.
+
 Style_Inicio.css: estilos de la página principal.
+
 Style_Registrarse.css: estilos de la página de registro.
+
 Style_Sobre.css: estilos de la página “Sobre”.
+
 Transacciones.html: módulo para la gestión de transacciones.
+
 TransaccionesEstilos.css: estilos específicos del módulo de transacciones.
 
 🚀 8. Instalación y Ejecución
