@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<!--FINAN CONTROL WEB — Página de Transacciones-->
+<html lang="es">
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>FinanControl – Transacciones</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="TransaccionesEstilos.css">
+</head>
+
+
+<body>
+
+  
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+        <div class="sidebar__logo">
+           
+            <h1>Finan<span>Control</span></h1>
+            <p>Gestión Financiera</p>
+        </div>
+
+        <!-- NAVEGACIÓN PRINCIPAL -->
+        <nav class="sidebar__nav">
+
+            
+            <ul>
+
+               
+                <li>
+                    <a href="Dashboard.html">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <rect x="3"  y="3"  width="7" height="7" rx="1"/>
+                            <rect x="14" y="3"  width="7" height="7" rx="1"/>
+                            <rect x="3"  y="14" width="7" height="7" rx="1"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+
+              
+                <li>
+                    <a href="Transacciones.html" class="active">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/>
+                        </svg>
+                        Transacciones
+                    </a>
+                </li>
+
+                <li>
+                    <a href="Reportes.html">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6M5 21h14a2 2 0 002-2V7l-5-5H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                        Reportes
+                    </a>
+                </li>
+
+                <li>
+                    <a href="metas.html">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/>
+                        </svg>
+                        Metas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="grupos.html">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                      </svg>
+                      Grupos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="perfil.html">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        Perfil
+                    </a>
+                </li>
+
+            </ul>
+           
+        </nav>
+      
+       
+        <div class="sidebar__user">
+            <div class="sidebar__avatar">LA</div>
+            <div class="sidebar__user-info">
+              
+                <strong>Laura Vargas</strong>
+                
+                <span>laura@email.com</span>
+            </div>
+        </div>
+
+        <!-- BOTÓN CERRAR SESIÓN -->
+        <button class="sidebar__logout" type="button" onclick="window.location.href='index.html'">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+            </svg>
+            Cerrar Sesión
+        </button>
+
+    </aside>
+   
+
+   
+    <div class="main">
+
+        <!-- HEADER / TOPBAR -->
+        <header class="topbar">
+            <div class="topbar__left">
+                <h2>Transacciones</h2>
+                <p id="today-date">Cargando fecha...</p>
+            </div>
+            <div class="topbar__right">
+                
+                <span>Hola Laura!</span>
+                <div class="topbar__avatar">LV</div>
+            </div>
+        </header>
+        
+
+       
+        <main class="content">
+
+
+            <!--ENCABEZADO DE PÁGINA Título "Transacciones" + botón "Añadir Transacción +" -->
+            <div class="page-header">
+                <h1 class="page-header__title">Transacciones</h1>
+       
+                <button class="btn-add" onclick="openModal()">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    Añadir Transaccion
+                </button>
+            </div>
+
+
+            <!-- SECCIÓN DE FILTROS -->
+            <section class="filters">
+
+                <h3 class="filters__title">Filtros</h3>
+
+                <div class="filters__grid">
+
+                    <!-- Filtro 1: Mes -->
+                    <div class="filters__group">
+                    
+                        <label class="filters__label">Mes</label>
+                       
+                        <select class="filters__select" id="filterMes" onchange="filterTransactions()">
+                            <option value="">Todos los meses</option>
+                            <option value="marzo">Marzo 2026</option>
+                            <option value="febrero">Febrero 2026</option>
+                            <option value="enero">Enero 2026</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro 2: Tipo -->
+                    <div class="filters__group">
+                        <label class="filters__label">Tipo</label>
+                        <select class="filters__select" id="filterTipo" onchange="filterTransactions()">
+                            <option value="">Todos</option>
+                            <option value="gasto">Gasto</option>
+                            <option value="ingreso">Ingreso</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro 3: Categoría -->
+                    <div class="filters__group">
+                        <label class="filters__label">Categoría</label>
+                        <select class="filters__select" id="filterCat" onchange="filterTransactions()">
+                            <option value="">Todas las categorías</option>
+                            <option value="Alimentación">Alimentación</option>
+                            <option value="Transporte">Transporte</option>
+                            <option value="Entretenimiento">Entretenimiento</option>
+                            <option value="Salud">Salud</option>
+                            <option value="Hogar">Hogar</option>
+                            <option value="Salario">Salario</option>
+                            <option value="Extra">Extra</option>
+                            <option value="Servicios">Servicios</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </section>
+      
+
+
+            <!-- TABLA DE TRANSACCIONES-->
+            <section class="months-list" id="monthsContainer">
+
+
+                <!-- MARZO 2026 -->
+                <div class="month-block open" data-mes="marzo">
+
+     
+                    <div class="month-block__header" onclick="toggleMonth(this)">
+
+                        <span class="month-block__name">MARZO 2026</span>
+
+                        <div class="month-block__chevron">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </div>
+
+
+                    <div class="month-block__body">
+
+
+                        <table class="trans-table">
+
+
+                            <thead>
+                                <tr>
+
+                                    <th>Fecha</th>
+                                    <th>Tipo</th>
+                                    <th>Categoría</th>
+                                    <th>Monto</th>
+                                    <th>Descripcion</th>
+                                    <th class="th--right">Acciones</th>
+                                </tr>
+                            </thead>
+
+             
+                            <tbody>
+
+                                <!-- Cada <tr> una transacción-->
+
+                                <!-- Gasto Alimentación -->
+                                <tr data-tipo="gasto" data-cat="Alimentación">
+                           
+                                    <td class="td--date">12/03/26</td>
+                                    <td>
+                                
+                                        <span class="badge badge--gasto">Gasto</span>
+                                    </td>
+                                    <td class="td--cat">Alimentación</td>
+                                    <td class="td--amount td--amount--gasto">$150.000</td>
+                                    <td class="td--desc">Supermarket place</td>
+                                    <td class="td--actions">
+                                        <!-- Botón lápiz: abre modal Editar -->
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                            </svg>
+                                        </button>
+                                        <!-- Botón basura: abre modal Eliminar -->
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!--  Gasto Transporte -->
+                                <tr data-tipo="gasto" data-cat="Transporte">
+                                    <td class="td--date">12/03/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Transporte</td>
+                                    <td class="td--amount td--amount--gasto">$250.000</td>
+                                    <td class="td--desc">TransMilenio</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Gasto Entretenimiento -->
+                                <tr data-tipo="gasto" data-cat="Entretenimiento">
+                                    <td class="td--date">17/03/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Entretenimiento</td>
+                                    <td class="td--amount td--amount--gasto">$80.000</td>
+                                    <td class="td--desc">Netflix Sub</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Gasto Salud -->
+                                <tr data-tipo="gasto" data-cat="Salud">
+                                    <td class="td--date">18/03/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Salud</td>
+                                    <td class="td--amount td--amount--gasto">$230.000</td>
+                                    <td class="td--desc">Cordales</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <!-- gasto Hogar — Arriendo -->
+                                <tr data-tipo="gasto" data-cat="Hogar">
+                                    <td class="td--date">18/03/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Hogar</td>
+                                    <td class="td--amount td--amount--gasto">$1.500.000</td>
+                                    <td class="td--desc">Arriendo</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Gasto Hogar — Servicios -->
+                                <tr data-tipo="gasto" data-cat="Hogar">
+                                    <td class="td--date">18/03/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Hogar</td>
+                                    <td class="td--amount td--amount--gasto">$200.000</td>
+                                    <td class="td--desc">Servicios</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <!--  Gasto Hogar — Internet -->
+                                <tr data-tipo="gasto" data-cat="Hogar">
+                                    <td class="td--date">18/03/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Hogar</td>
+                                    <td class="td--amount td--amount--gasto">$80.000</td>
+                                    <td class="td--desc">Internet</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Ingreso — Salario (badge verde, monto verde) -->
+                                <tr data-tipo="ingreso" data-cat="Salario">
+                                    <td class="td--date">01/03/26</td>
+                                    <td>
+                     
+                                        <span class="badge badge--ingreso">Ingreso</span>
+                                    </td>
+                                    <td class="td--cat">Salario</td>
+                        
+                                    <td class="td--amount td--amount--ingreso">$4.500.000</td>
+                                    <td class="td--desc">Salario Mensual</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+               
+
+                    </div>
+         
+
+                </div>
+   
+
+
+                <!--FEBRERO 2026  -->
+                <div class="month-block" data-mes="febrero">
+
+                    <div class="month-block__header" onclick="toggleMonth(this)">
+                        <span class="month-block__name">FEBRERO 2026</span>
+                        <div class="month-block__chevron">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </div>
+
+            
+                    <div class="month-block__body">
+                        <table class="trans-table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th><th>Tipo</th><th>Categoría</th>
+                                    <th>Monto</th><th>Descripcion</th><th class="th--right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr data-tipo="gasto" data-cat="Alimentación">
+                                    <td class="td--date">28/02/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Alimentación</td>
+                                    <td class="td--amount td--amount--gasto">$320.000</td>
+                                    <td class="td--desc">Supermercado Carrefour</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <tr data-tipo="ingreso" data-cat="Extra">
+                                    <td class="td--date">25/02/26</td>
+                                    <td><span class="badge badge--ingreso">Ingreso</span></td>
+                                    <td class="td--cat">Extra</td>
+                                    <td class="td--amount td--amount--ingreso">$1.500.000</td>
+                                    <td class="td--desc">Proyecto Freelance</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <tr data-tipo="gasto" data-cat="Transporte">
+                                    <td class="td--date">24/02/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Transporte</td>
+                                    <td class="td--amount td--amount--gasto">$150.000</td>
+                                    <td class="td--desc">Gasolina Shell</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <tr data-tipo="gasto" data-cat="Entretenimiento">
+                                    <td class="td--date">22/02/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Entretenimiento</td>
+                                    <td class="td--amount td--amount--gasto">$15.000</td>
+                                    <td class="td--desc">Netflix Suscripción</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <tr data-tipo="gasto" data-cat="Servicios">
+                                    <td class="td--date">18/02/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Servicios</td>
+                                    <td class="td--amount td--amount--gasto">$180.000</td>
+                                    <td class="td--desc">Luz y Gas</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <tr data-tipo="ingreso" data-cat="Salario">
+                                    <td class="td--date">01/02/26</td>
+                                    <td><span class="badge badge--ingreso">Ingreso</span></td>
+                                    <td class="td--cat">Salario</td>
+                                    <td class="td--amount td--amount--ingreso">$4.500.000</td>
+                                    <td class="td--desc">Salario Mensual</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+     
+
+
+                <!--  ENERO 2026  -->
+                <div class="month-block" data-mes="enero">
+
+                    <div class="month-block__header" onclick="toggleMonth(this)">
+                        <span class="month-block__name">ENERO 2026</span>
+                        <div class="month-block__chevron">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="month-block__body">
+                        <table class="trans-table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th><th>Tipo</th><th>Categoría</th>
+                                    <th>Monto</th><th>Descripcion</th><th class="th--right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr data-tipo="ingreso" data-cat="Salario">
+                                    <td class="td--date">01/01/26</td>
+                                    <td><span class="badge badge--ingreso">Ingreso</span></td>
+                                    <td class="td--cat">Salario</td>
+                                    <td class="td--amount td--amount--ingreso">$4.500.000</td>
+                                    <td class="td--desc">Salario Mensual</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <tr data-tipo="gasto" data-cat="Hogar">
+                                    <td class="td--date">05/01/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Hogar</td>
+                                    <td class="td--amount td--amount--gasto">$1.500.000</td>
+                                    <td class="td--desc">Arriendo</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                                <tr data-tipo="gasto" data-cat="Alimentación">
+                                    <td class="td--date">10/01/26</td>
+                                    <td><span class="badge badge--gasto">Gasto</span></td>
+                                    <td class="td--cat">Alimentación</td>
+                                    <td class="td--amount td--amount--gasto">$290.000</td>
+                                    <td class="td--desc">Mercado semanal</td>
+                                    <td class="td--actions">
+                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
+                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+               
+
+            </section>
+           
+
+
+        </main>
+       
+
+    </div>
+   
+
+
+    <!--MODAL 1 — AÑADIR TRANSACCIÓN -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal__card">
+
+            <div class="modal__header">
+                <span class="modal__title">Nueva Transacción</span>
+                <button class="modal__close" onclick="closeModal()">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Grid de 2 columnas para los campos -->
+            <div class="modal__grid">
+
+                <div class="field">
+                    <label class="field__label">Fecha</label>
+                    <input type="date" class="field__input" id="newFecha">
+                </div>
+
+                <div class="field">
+                    <label class="field__label">Tipo</label>
+                    <select class="field__select" id="newTipo">
+                        <option value="gasto">Gasto</option>
+                        <option value="ingreso">Ingreso</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label class="field__label">Categoría</label>
+                    <select class="field__select" id="newCat">
+                        <option>Alimentación</option>
+                        <option>Transporte</option>
+                        <option>Entretenimiento</option>
+                        <option>Salud</option>
+                        <option>Hogar</option>
+                        <option>Salario</option>
+                        <option>Extra</option>
+                        <option>Servicios</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label class="field__label">Monto ($)</label>
+                    <!-- <input type="number"> = solo acepta números -->
+                    <input type="number" class="field__input" id="newMonto" placeholder="0" min="0">
+                </div>
+
+                <!-- col-full = ocupa las 2 columnas del grid -->
+                <div class="field col-full">
+                    <label class="field__label">Descripción</label>
+                    <input type="text" class="field__input" id="newDesc" placeholder="Ej: Supermercado, Netflix...">
+                </div>
+
+            </div>
+
+            <div class="modal__actions">
+                <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                <button class="btn-save" onclick="saveTransaction()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--MODAL 2 — EDITAR TRANSACCIÓN-->
+    <div class="modal-overlay" id="editOverlay">
+        <div class="modal__card">
+
+            <div class="modal__header">
+                <span class="modal__title">Editar Transacción</span>
+                <button class="modal__close" onclick="closeEditModal()">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <label class="field__label" style="margin-bottom:8px; display:block;">
+                Tipo <span style="color:var(--red)">*</span>
+            </label>
+            <div class="type-toggle">
+                <button class="toggle-btn" id="btnIngreso" onclick="setTipo('ingreso')">Ingreso</button>
+                <button class="toggle-btn active-gasto" id="btnGasto" onclick="setTipo('gasto')">Gasto</button>
+            </div>
+            <input type="hidden" id="editTipo" value="gasto">
+
+            <div class="field" style="margin-bottom:14px;">
+                <label class="field__label">Categoría <span style="color:var(--red)">*</span></label>
+                <select class="field__select field__input" id="editCat">
+                    <option>Alimentación</option>
+                    <option>Transporte</option>
+                    <option>Entretenimiento</option>
+                    <option>Salud</option>
+                    <option>Hogar</option>
+                    <option>Salario</option>
+                    <option>Extra</option>
+                    <option>Servicios</option>
+                </select>
+            </div>
+
+            <!-- Fila de 2 columnas Monto + Fecha -->
+            <div class="edit-row">
+
+                <div class="field">
+                    <label class="field__label">Monto (COP) <span style="color:var(--red)">*</span></label>
+                    <div class="input-prefix-wrap">
+                        <span class="input-prefix-wrap__symbol">$</span>
+                        <input type="number" id="editMonto" placeholder="150.000" min="0">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field__label">Fecha <span style="color:var(--red)">*</span></label>
+                    <div class="input-icon-wrap">
+                        <span class="input-icon-wrap__icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </span>
+                        <input type="date" id="editFecha">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Descripción -->
+            <div class="field" style="margin-bottom:14px;">
+                <label class="field__label">Descripción <span style="color:var(--red)">*</span></label>
+                <input type="text" class="field__input" id="editDesc" placeholder="Ej: Supermarket place">
+            </div>
+
+            <!-- Miembro -->
+            <div class="field" style="margin-bottom:14px;">
+                <label class="field__label">Miembro (opcional)</label>
+                <input type="text" class="field__input" id="editMiembro" placeholder="Ej: Laura">
+            </div>
+
+            <!-- Toggle transacción recurrente -->
+            <div class="recurrent-row">
+                <span class="recurrent-row__label">Transacción recurrente</span>
+                <label class="switch">
+                    <input type="checkbox" id="editRecurrente">
+                    <span class="switch__track"></span>
+                </label>
+            </div>
+
+            <!-- Botones -->
+            <div style="margin-top:20px;">
+                <button class="btn-update" onclick="updateTransaction()">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                    </svg>
+                    Actualizar
+                </button>
+                <button class="btn-cancel-edit" onclick="closeEditModal()">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- MODAL 3 — CONFIRMAR ELIMINACIÓN-->
+    <div class="modal-overlay" id="deleteOverlay">
+        <div class="modal__card--delete">
+
+            <!-- Encabezado ícono X rojo + título -->
+            <div class="delete__header">
+                <div class="delete__icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </div>
+                <span class="delete__title">¿Eliminar transacción?</span>
+            </div>
+
+            <p class="delete__warning">
+                ¿Estás seguro de eliminar esta transacción? Esta acción no se puede deshacer.
+            </p>
+
+            <!-- Recuadro con los datos de la transacción -->
+            <div class="delete__info">
+                <div class="delete__info-row">
+                    <!--  etiqueta + valor en la misma fila -->
+                    <span class="delete__info-label">Descripción:</span>
+                    <span class="delete__info-value" id="deleteDesc">—</span>
+                </div>
+                <div class="delete__info-row">
+                    <span class="delete__info-label">Monto:</span>
+                    <span class="delete__info-value delete__info-value--red" id="deleteMonto">—</span>
+                </div>
+            </div>
+
+            <div class="delete__actions">
+                <button class="btn-confirm-delete" onclick="confirmDelete()">Sí, Eliminar</button>
+                <button class="btn-cancel-delete"  onclick="closeDeleteModal()">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--JAVASCRIPT — Toda la interactividad de la página -->
+    <script>
+
+        /* FECHA DINÁMICA*/
+        const dias  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        const meses = ['enero','febrero','marzo','abril','mayo','junio',
+                       'julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        const hoy   = new Date();
+        document.getElementById('today-date').textContent =
+            `${dias[hoy.getDay()]}, ${hoy.getDate()} de ${meses[hoy.getMonth()]} de ${hoy.getFullYear()}`;
+
+
+        /* ACORDEÓN DE MESES*/
+        function toggleMonth(header) {
+            header.closest('.month-block').classList.toggle('open');
+        }
+
+
+        /*FILTROS */
+        function filterTransactions() {
+            const filtroMes  = document.getElementById('filterMes').value;
+            const filtroTipo = document.getElementById('filterTipo').value;
+            const filtroCat  = document.getElementById('filterCat').value;
+
+            document.querySelectorAll('.month-block').forEach(bloque => {
+
+                /* Si hay filtro de mes y este bloque no es ese mes → ocultar */
+                if (filtroMes && bloque.dataset.mes !== filtroMes) {
+                    bloque.style.display = 'none';
+                    return;
+                }
+                bloque.style.display = '';
+
+                let visibles = 0;
+                bloque.querySelectorAll('tbody tr').forEach(fila => {
+                    /* Verificar si la fila pasa ambos filtros */
+                    const ok = (!filtroTipo || fila.dataset.tipo === filtroTipo) &&
+                               (!filtroCat  || fila.dataset.cat  === filtroCat);
+                    fila.style.display = ok ? '' : 'none';
+                    if (ok) visibles++;
+                });
+
+                /* Si ninguna fila visible → ocultar el bloque completo */
+                if (visibles === 0) bloque.style.display = 'none';
+            });
+        }
+
+
+        /* MODAL AÑADIR */
+        function openModal()  { document.getElementById('modalOverlay').classList.add('active'); }
+        function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        /* Construye el HTML de una fila con sus botones animados */
+        function buildRow(tipo, cat, fecha, monto, desc) {
+            return `
+                <tr data-tipo="${tipo}" data-cat="${cat}">
+                    <td class="td--date">${fecha}</td>
+                    <td><span class="badge badge--${tipo}">${tipo === 'gasto' ? 'Gasto' : 'Ingreso'}</span></td>
+                    <td class="td--cat">${cat}</td>
+                    <td class="td--amount td--amount--${tipo}">${monto}</td>
+                    <td class="td--desc">${desc}</td>
+                    <td class="td--actions">
+                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5
+                                       m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                        </button>
+                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858
+                                       L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>`;
+        }
+
+        function saveTransaction() {
+            const fecha = document.getElementById('newFecha').value;
+            const tipo  = document.getElementById('newTipo').value;
+            const cat   = document.getElementById('newCat').value;
+            const monto = document.getElementById('newMonto').value;
+            const desc  = document.getElementById('newDesc').value;
+
+            if (!fecha || !monto || !desc) {
+                alert('Completa todos los campos obligatorios.');
+                return;
+            }
+
+            const p = fecha.split('-');
+            const fechaFmt = `${p[2]}/${p[1]}/${p[0].slice(2)}`;
+            const montoFmt = `$${Number(monto).toLocaleString('es-CO')}`;
+
+            document.querySelector(".month-block[data-mes='marzo'] tbody")
+                    .insertAdjacentHTML('afterbegin', buildRow(tipo, cat, fechaFmt, montoFmt, desc));
+            document.querySelector(".month-block[data-mes='marzo']").classList.add('open');
+
+            document.getElementById('newFecha').value = '';
+            document.getElementById('newMonto').value = '';
+            document.getElementById('newDesc').value  = '';
+            closeModal();
+        }
+
+
+        /*MODAL EDITAR*/
+        let filaEnEdicion = null;
+
+        function setTipo(tipo) {
+            document.getElementById('editTipo').value = tipo;
+            document.getElementById('btnIngreso').className =
+                'toggle-btn' + (tipo === 'ingreso' ? ' active-ingreso' : '');
+            document.getElementById('btnGasto').className =
+                'toggle-btn' + (tipo === 'gasto' ? ' active-gasto' : '');
+        }
+
+        function openEditModal(btn) {
+            const fila = btn.closest('tr');
+            filaEnEdicion = fila;
+            const tipo = fila.dataset.tipo;
+            const cat  = fila.querySelector('.td--cat').textContent.trim();
+            const desc = fila.querySelector('.td--desc').textContent.trim();
+            setTipo(tipo);
+            const sel = document.getElementById('editCat');
+            for (let o of sel.options) { o.selected = o.value === cat; }
+            document.getElementById('editDesc').value    = desc;
+            document.getElementById('editMonto').value   = '';
+            document.getElementById('editFecha').value   = '';
+            document.getElementById('editMiembro').value = '';
+            document.getElementById('editRecurrente').checked = false;
+            document.getElementById('editOverlay').classList.add('active');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editOverlay').classList.remove('active');
+            filaEnEdicion = null;
+        }
+        document.getElementById('editOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeEditModal();
+        });
+
+        function updateTransaction() {
+            if (!filaEnEdicion) return;
+            const tipo  = document.getElementById('editTipo').value;
+            const cat   = document.getElementById('editCat').value;
+            const desc  = document.getElementById('editDesc').value.trim();
+            const monto = document.getElementById('editMonto').value;
+            if (!desc) { alert('La descripción es obligatoria.'); return; }
+
+            filaEnEdicion.dataset.tipo = tipo;
+            filaEnEdicion.dataset.cat  = cat;
+
+            const badge = filaEnEdicion.querySelector('.badge');
+            badge.className   = `badge badge--${tipo}`;
+            badge.textContent = tipo === 'gasto' ? 'Gasto' : 'Ingreso';
+
+            filaEnEdicion.querySelector('.td--cat').textContent  = cat;
+            filaEnEdicion.querySelector('.td--desc').textContent = desc;
+
+            const tdMonto = filaEnEdicion.querySelector('.td--amount');
+            tdMonto.className = `td--amount td--amount--${tipo}`;
+            if (monto) tdMonto.textContent = `$${Number(monto).toLocaleString('es-CO')}`;
+
+            closeEditModal();
+        }
+
+
+        /* MODAL ELIMINAR */
+        let filaParaEliminar = null;
+
+        function openDeleteModal(btn) {
+            const fila = btn.closest('tr');
+            filaParaEliminar = fila;
+            document.getElementById('deleteDesc').textContent  =
+                fila.querySelector('.td--desc').textContent.trim();
+            document.getElementById('deleteMonto').textContent =
+                fila.querySelector('.td--amount').textContent.trim();
+            document.getElementById('deleteOverlay').classList.add('active');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteOverlay').classList.remove('active');
+            filaParaEliminar = null;
+        }
+        document.getElementById('deleteOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeDeleteModal();
+        });
+
+        function confirmDelete() {
+            if (filaParaEliminar) filaParaEliminar.remove();
+            closeDeleteModal();
+        }
+
+    </script>
+
+</body>
+</html>
