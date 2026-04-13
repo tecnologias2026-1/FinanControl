@@ -1,0 +1,853 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*VARIABLES GLOBALES*/
+:root {
+    --sidebar-bg:   #0d1117;   /* oscuro del sidebar */
+    --sidebar-w:    220px;     /* ancho del sidebar */
+    --accent:       #2563eb;   /* azul principal */
+    --accent-light: #dbeafe;   /* azul muy claro */
+    --surface:      #ffffff;   /* blanco de tarjetas */
+    --bg:           #f1f5f9;   /* gris suave del fondo */
+    --text-main:    #0f172a;   /* texto casi negro */
+    --text-muted:   #64748b;   /* gris medio */
+    --text-soft:    #94a3b8;   /* gris claro */
+    --green:        #22c55e;   /* verde (ingresos) */
+    --red:          #ef4444;   /* rojo (gastos) */
+    --border:       #e2e8f0;   /* gris para bordes */
+    --radius:       14px;      /* redondez de esquinas */
+    --shadow:       0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+}
+
+/* BODY */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 28px 16px 24px;
+    flex-shrink: 0;/* no se encoge */
+    z-index: 10;
+}
+
+/* Logo */
+.sidebar__logo { padding: 0 8px 28px; }
+
+.sidebar__logo h1 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -.3px;
+}
+
+/* <span> colorea SOLO la palabra "Control" en azul */
+.sidebar__logo h1 span { color: var(--accent); }
+
+.sidebar__logo p {
+    font-size: .72rem;
+    color: #94a3b8;
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+
+.sidebar__nav { flex: 1; }
+
+
+.sidebar__nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.sidebar__nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;/* espacio entre ícono y texto */
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: .84rem;
+    font-weight: 500;
+    transition: background .15s, color .15s;
+}
+
+.sidebar__nav a svg      { width: 17px; height: 17px; flex-shrink: 0; }
+.sidebar__nav a:hover    { background: #1e293b; color: #cbd5e1; }
+.sidebar__nav a.active   { background: var(--accent); color: #fff; }
+
+/* Bloque de usuario al fondo del sidebar */
+.sidebar__user {
+    border-top: 1px solid #1e293b;
+    padding-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Círculo con las iniciales del usuario */
+.sidebar__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: .8rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.sidebar__user-info         { flex: 1; overflow: hidden; }
+
+/*negrita para el nombre */
+.sidebar__user-info strong  {
+    display: block;
+    font-size: .8rem;
+    color: #e2e8f0;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* texto pequeño para el correo */
+.sidebar__user-info span { font-size: .7rem; color: #64748b; }
+
+/* Botón Cerrar Sesión */
+.sidebar__logout {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ef4444;
+    font-size: .78rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background .15s;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar__logout:hover {
+    background: #1e293b;
+}
+
+.sidebar__logout svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/*MAIN — Área principal a la derecha del sidebar*/
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* TOPBAR*/
+.topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.topbar__left h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.topbar__left p {
+    font-size: .78rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+.topbar__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.topbar__right span { font-size: .88rem; font-weight: 600; }
+
+.topbar__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: .82rem;
+    cursor: pointer;
+}
+
+/* CONTENT — Zona scrolleable con todo el dashboard */
+.content {
+    flex: 1;
+    overflow-y: auto;/* scroll vertical */
+    padding: 28px 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;/* espacio entre secciones */
+}
+
+/*   TARJETAS KPI — 4 indicadores en grid de 4 columnas*/
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+    gap: 18px;
+}
+
+.kpi-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    animation: fadeUp .4s ease both;
+}
+
+/* Efecto escalonado: cada tarjeta entra un poco después */
+.kpi-card:nth-child(2) { animation-delay: .06s; }
+.kpi-card:nth-child(3) { animation-delay: .12s; }
+.kpi-card:nth-child(4) { animation-delay: .18s; }
+
+.kpi-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+/* "BALANCE TOTAL" */
+.kpi-card__label {
+    font-size: .68rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.kpi-card__icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kpi-card__icon svg          { width: 18px; height: 18px; }
+.kpi-card__icon--blue        { background: #dbeafe; color: #2563eb; }
+.kpi-card__icon--green       { background: #dcfce7; color: #16a34a; }
+.kpi-card__icon--red         { background: #fee2e2; color: #dc2626; }
+.kpi-card__icon--yellow      { background: #fef9c3; color: #ca8a04; }
+
+.kpi-card__amount {
+    font-size: 1.62rem;
+    font-weight: 800;
+    letter-spacing: -.5px;
+    color: var(--text-main);
+}
+
+/*porcentaje de cambio */
+.kpi-card__change {
+    font-size: .72rem;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+.kpi-card__change--up   { color: var(--green); }
+.kpi-card__change--down { color: var(--red); }
+
+/* GRÁFICAS — Fila con 2 columnas: área + donut*/
+.charts-row {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 18px;
+    animation: fadeUp .4s .22s ease both;
+}
+
+.chart-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.chart-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: 18px; }
+#cashflowChart { width: 100% !important; }
+
+/* donut centrado verticalmente */
+.donut-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#donutChart { max-height: 220px; }
+
+.donut-legend {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.donut-legend li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: .8rem;
+}
+
+.legend-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.legend-dot--blue   { background: #3b82f6; }
+.legend-dot--green  { background: #22c55e; }
+.legend-dot--yellow { background: #f59e0b; }
+.legend-dot--red    { background: #ef4444; }
+.legend-dot--purple { background: #a855f7; }
+.legend-dot--gray   { background: #94a3b8; }
+
+
+.legend-amount { font-weight: 700; color: var(--text-main); }
+
+/*RESUMEN MENSUAL — Acordeón por mes*/
+.resumen {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    animation: fadeUp .4s .32s ease both;
+}
+
+.resumen__title { font-size: .95rem; font-weight: 700; }
+.resumen__sub   { font-size: .78rem; color: var(--text-muted); margin-top: 2px; margin-bottom: 18px; }
+
+/* Acordeón cada mes es un div expandible */
+.acc-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow .2s;
+}
+
+.acc-item:hover { box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+
+/* Cabecera clickeable del mes */
+.acc-item__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+    background: #fff;
+}
+
+.acc-item__header-left { display: flex; align-items: center; gap: 12px; }
+
+/* Ícono azul claro */
+.acc-item__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: var(--accent-light);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.acc-item__icon svg { width: 18px; height: 18px; }
+
+/* <span> nombre del mes */
+.acc-item__month   { font-size: .86rem; font-weight: 800; color: var(--text-main); display: block; }
+
+/* <span> balance resumido */
+.acc-item__balance { font-size: .74rem; color: var(--text-muted); margin-top: 1px; font-weight: 500; display: block; }
+
+/* Flecha rota 180° cuando el ítem tiene clase "open" */
+.acc-item__chevron { color: var(--text-soft); transition: transform .25s; }
+.acc-item__chevron svg { width: 18px; height: 18px; }
+.acc-item.open .acc-item__chevron { transform: rotate(180deg); }
+
+/* Cuerpo oculto por defecto, visible con clase "open" */
+.acc-item__body {
+    display: none;/* OCULTO */
+    padding: 4px 18px 18px;
+    background: #fff;
+}
+
+.acc-item.open .acc-item__body { display: block; } /* VISIBLE */
+
+/* Grid de 3 tarjetas */
+.acc-item__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+/* Cada tarjeta */
+.mini-card {
+    border-radius: 10px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mini-card--income  { background: #f0fdf4; border: 1px solid #bbf7d0; }
+.mini-card--expense { background: #fff1f2; border: 1px solid #fecdd3; }
+.mini-card--balance { background: #eff6ff; border: 1px solid #bfdbfe; }
+
+/* <span> etiqueta de la tarjeta */
+.mini-card__label {
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.mini-card__amount {
+    font-size: 1.22rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -.3px;
+}
+
+/* <span> porcentaje de cambio */
+.mini-card__change {
+    font-size: .72rem;
+    font-weight: 600;
+    margin-top: 5px;
+    display: block;
+}
+
+.mini-card__change--up   { color: var(--green); }
+.mini-card__change--down { color: var(--red); }
+
+
+.mini-card__icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mini-card__icon svg          { width: 17px; height: 17px; }
+.mini-card__icon--green       { background: var(--green); color: #fff; }
+.mini-card__icon--red         { background: var(--red);   color: #fff; }
+.mini-card__icon--blue        { background: var(--accent); color: #fff; }
+
+/* ANIMACIÓN fadeUp entrada suave desde abajo*/
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar personalizado */
+.content::-webkit-scrollbar       { width: 5px; }
+.content::-webkit-scrollbar-track { background: transparent; }
+.content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+/* ============================================================
+   ANIMACIONES DE ENTRADA SUAVES
+   ============================================================ */
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes softPop {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Sidebar y topbar */
+.sidebar {
+    animation: fadeSlideRight .45s ease both;
+}
+
+.topbar {
+    animation: fadeSlideUp .40s ease both;
+}
+
+/* Contenido principal con entrada escalonada */
+.content > * {
+    opacity: 0;
+    animation: fadeSlideUp .5s ease forwards;
+}
+
+.content > *:nth-child(1) { animation-delay: .06s; }
+.content > *:nth-child(2) { animation-delay: .14s; }
+.content > *:nth-child(3) { animation-delay: .22s; }
+.content > *:nth-child(4) { animation-delay: .30s; }
+.content > *:nth-child(5) { animation-delay: .38s; }
+.content > *:nth-child(6) { animation-delay: .46s; }
+
+/* Tarjetas y bloques internos */
+.kpi-card,
+.chart-card,
+.acc-item,
+.reportes-kpi-card,
+.reportes-chart-card,
+.reportes-details,
+.reportes-acc-item,
+.reportes-mini-card,
+.filters,
+.months-list,
+.month-block,
+.modal__card,
+.modal__card--delete {
+    animation: softPop .38s ease both;
+}
+
+/* Respeta usuarios con reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .topbar,
+    .content > *,
+    .kpi-card,
+    .chart-card,
+    .acc-item,
+    .reportes-kpi-card,
+    .reportes-chart-card,
+    .reportes-details,
+    .reportes-acc-item,
+    .reportes-mini-card,
+    .filters,
+    .months-list,
+    .month-block,
+    .modal__card,
+    .modal__card--delete {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE — DASHBOARD
+   ============================================================ */
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img, svg, canvas {
+    max-width: 100%;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+
+    .acc-item__cards {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-card {
+        min-width: 0;
+    }
+}
+
+/* Tablet / móvil */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 18px 14px 16px;
+        border-bottom: 1px solid #1e293b;
+    }
+
+    .sidebar__logo {
+        padding: 0 4px 16px;
+    }
+
+    .sidebar__nav {
+        flex: unset;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .sidebar__nav ul {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 8px;
+        min-width: max-content;
+        padding-bottom: 4px;
+    }
+
+    .sidebar__nav a {
+        white-space: nowrap;
+        padding: 10px 14px;
+        font-size: .8rem;
+    }
+
+    .sidebar__user {
+        margin-top: 14px;
+        padding-top: 14px;
+    }
+
+    .main {
+        overflow: visible;
+        min-height: auto;
+    }
+
+    .topbar {
+        padding: 16px 20px;
+        height: auto;
+        min-height: 68px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .topbar__left h2 {
+        font-size: 1.15rem;
+    }
+
+    .topbar__left p {
+        font-size: .75rem;
+    }
+
+    .content {
+        padding: 20px 18px 28px;
+        gap: 20px;
+        overflow: visible;
+    }
+
+    .kpi-grid,
+    .charts-row,
+    .acc-item__cards {
+        grid-template-columns: 1fr !important;
+    }
+
+    .chart-card,
+    .resumen,
+    .kpi-card {
+        padding: 18px;
+    }
+
+    .kpi-card__amount {
+        font-size: 1.35rem;
+    }
+
+    .donut-wrapper {
+        margin-bottom: 16px;
+    }
+
+    #donutChart {
+        max-height: 200px;
+    }
+
+    .acc-item__header {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .acc-item__header-left {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .mini-card {
+        padding: 16px;
+    }
+}
+
+/* Móvil pequeño */
+@media (max-width: 600px) {
+    .sidebar {
+        padding: 16px 10px 14px;
+    }
+
+    .sidebar__nav a {
+        padding: 9px 12px;
+        font-size: .78rem;
+    }
+
+    .sidebar__avatar,
+    .topbar__avatar {
+        width: 32px;
+        height: 32px;
+        font-size: .74rem;
+    }
+
+    .topbar {
+        padding: 14px 16px;
+    }
+
+    .topbar__right span {
+        font-size: .8rem;
+    }
+
+    .content {
+        padding: 16px 14px 24px;
+    }
+
+    .kpi-card,
+    .chart-card,
+    .resumen,
+    .mini-card {
+        padding: 16px;
+    }
+
+    .kpi-card__label,
+    .mini-card__label {
+        font-size: .66rem;
+    }
+
+    .kpi-card__amount {
+        font-size: 1.2rem;
+    }
+
+    .kpi-card__change,
+    .mini-card__change,
+    .acc-item__balance,
+    .resumen__sub,
+    .donut-legend li {
+        font-size: .72rem;
+    }
+
+    .chart-card h3,
+    .resumen__title,
+    .acc-item__month {
+        font-size: .88rem;
+    }
+
+    .mini-card__amount {
+        font-size: 1.05rem;
+    }
+
+    .mini-card__icon {
+        width: 30px;
+        height: 30px;
+        top: 12px;
+        right: 12px;
+    }
+
+    .mini-card__icon svg,
+    .acc-item__icon svg,
+    .kpi-card__icon svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .kpi-card__icon,
+    .acc-item__icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .donut-legend {
+        gap: 10px;
+    }
+
+    .legend-left {
+        gap: 6px;
+    }
+
+    #donutChart {
+        max-height: 180px;
+    }
+}
