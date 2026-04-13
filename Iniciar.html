@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar Sesión</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Style_Iniciar.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+<div class="logo-icon"></div>
+</div>
+
+<h2>Iniciar Sesión</h2>
+<p class="sub">Bienvenido de nuevo a FinanControl</p>
+
+<label>Correo Electrónico</label>
+<div class="input">
+  <div class="icon-mail"></div>
+  <input id="loginEmail" type="email" placeholder="tu@email.com">
+</div>
+
+<label>Contraseña</label>
+<div class="input">
+  <div class="icon-lock"></div>
+
+  <input id="loginPassword" type="password" placeholder="Mínimo 6 caracteres">
+  <div class="icon-eye" onclick="togglePassword()"></div>
+</div>
+
+<div class="row">
+  <label class="remember">
+    <input type="checkbox">
+    <span>Recordarme</span>
+  </label>
+
+  <span><a href="Registrarse.html">¿Olvidaste tu contraseña?</a></span>
+</div>
+
+<button type="button" onclick="iniciarSesion()">Iniciar Sesión</button>
+
+<div class="divider">o</div>
+
+<div class="footer">¿No tienes una cuenta? <span><a href="Registrarse.html">Crear cuenta gratis</a></span></div>
+
+</div>
+
+
+<script>
+function iniciarSesion() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+
+  if (!email || !password) {
+    alert('Por favor completa correo y contraseña.');
+    return;
+  }
+
+  if (password.length < 6) {
+    alert('La contraseña debe tener al menos 6 caracteres.');
+    return;
+  }
+
+  window.location.href = 'Dashboard.html';
+}
+
+/* 👇 NUEVO */
+function togglePassword() {
+  const input = document.getElementById('loginPassword');
+  const eye = document.querySelector('.icon-eye');
+
+  if (input.type === "password") {
+    input.type = "text";
+    eye.style.opacity = "0.5"; // opcional: efecto visual
+  } else {
+    input.type = "password";
+    eye.style.opacity = "1";
+  }
+}
+</script>
+</body>
+</html>

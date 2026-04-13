@@ -1,0 +1,116 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear Cuenta</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Style_Registrarse.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+  <div class="logo-icon"></div>
+</div>
+
+<h2>Crear Cuenta</h2>
+<p class="sub">Comienza gratis hoy mismo</p>
+
+<label>Nombre Completo</label>
+<div class="input">
+  <div class="icon-user"></div>
+  <input id="regNombre" type="text" placeholder="María García">
+</div>
+
+<label>Correo Electrónico</label>
+<div class="input">
+  <div class="icon-mail"></div>
+  <input id="regEmail" type="email" placeholder="tu@email.com">
+</div>
+
+<label>Contraseña</label>
+<div class="input">
+  <div class="icon-lock"></div>
+  <input id="regPassword" type="password" placeholder="Mínimo 6 caracteres">
+  <div class="icon-eye" onclick="togglePassword('regPassword', this)"></div>
+</div>
+
+<label>Confirmar Contraseña</label>
+<div class="input">
+  <div class="icon-lock"></div>
+  <input id="regPassword2" type="password" placeholder="Repite tu contraseña">
+  <div class="icon-eye" onclick="togglePassword('regPassword2', this)"></div>
+</div>
+
+<label class="terms">
+  <input type="checkbox" id="checkTerms">
+  <span>
+    Acepto los <a href="#">Términos y Condiciones</a> y la 
+    <a href="#">Política de Privacidad</a>
+  </span>
+</label>
+
+<button type="button" onclick="crearCuenta()">Crear Cuenta Gratis</button>
+
+<div class="box">
+<p>✔ Acceso ilimitado a todas las funciones</p>
+<p>✔ Reportes y análisis en tiempo real</p>
+<p>✔ Soporte prioritario 24/7</p>
+</div>
+
+<div class="footer">
+¿Ya tienes una cuenta? <span><a href="Iniciar.html">Iniciar sesión</a></span>
+</div>
+
+</div>
+
+
+<script>
+
+/* 🔥 MOSTRAR / OCULTAR CONTRASEÑA */
+function togglePassword(id, icon){
+  const input = document.getElementById(id);
+
+  if(input.type === "password"){
+    input.type = "text";
+    icon.style.opacity = "0.5"; // opcional (indica activo)
+  } else {
+    input.type = "password";
+    icon.style.opacity = "1";
+  }
+}
+
+
+/* VALIDACIÓN */
+function crearCuenta() {
+  const nombre = document.getElementById('regNombre').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass1 = document.getElementById('regPassword').value.trim();
+  const pass2 = document.getElementById('regPassword2').value.trim();
+
+  if (!nombre || !email || !pass1 || !pass2) {
+    alert('Por favor completa todos los campos.');
+    return;
+  }
+
+  if (pass1.length < 6) {
+    alert('La contraseña debe tener al menos 6 caracteres.');
+    return;
+  }
+
+  if (pass1 !== pass2) {
+    alert('Las contraseñas no coinciden.');
+    return;
+  }
+
+  window.location.href = 'Dashboard.html';
+}
+</script>
+
+</body>
+</html>
