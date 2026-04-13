@@ -1,0 +1,1397 @@
+/* RESET GENERAL — elimina márgenes y paddings por defecto y unifica el modelo de caja */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* VARIABLES GLOBALES — colores, tamaños, radios y sombras reutilizables en toda la vista */
+:root {
+    --sidebar-bg:   #0d1117;   /* fondo oscuro del sidebar */
+    --sidebar-w:    220px;     /* ancho fijo del sidebar */
+    --accent:       #2563eb;   /* azul principal de la interfaz */
+    --accent-light: #dbeafe;   /* azul claro para fondos suaves o resaltados */
+    --surface:      #ffffff;   /* blanco para tarjetas, tablas y paneles */
+    --bg:           #f1f5f9;   /* fondo general de la página */
+    --text-main:    #0f172a;   /* color principal del texto */
+    --text-muted:   #64748b;   /* color secundario del texto */
+    --text-soft:    #94a3b8;   /* color tenue para íconos o texto auxiliar */
+    --green:        #22c55e;   /* color asociado a ingresos o estados positivos */
+    --red:          #ef4444;   /* color asociado a gastos o acciones destructivas */
+    --border:       #e2e8f0;   /* color de bordes suaves */
+    --radius:       14px;      /* radio general para esquinas redondeadas */
+    --shadow:       0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05); /* sombra suave general */
+    --table-header: #2d4a8a;   /* azul oscuro del encabezado de cada bloque mensual */
+}
+
+/* BODY — estructura base de toda la página */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* SIDEBAR — menú lateral fijo a la izquierda */
+.sidebar {
+    width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;    /* organiza verticalmente logo, navegación y usuario */
+    padding: 28px 16px 24px;
+    flex-shrink: 0;            /* evita que el sidebar se comprima */
+    z-index: 10;
+}
+
+/* LOGO — identidad visual del sistema dentro del sidebar */
+.sidebar__logo {
+    padding: 0 8px 28px;
+}
+
+.sidebar__logo h1 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -.3px;
+}
+
+/* RESALTE DE MARCA — colorea “Control” en azul */
+.sidebar__logo h1 span {
+    color: var(--accent);
+}
+
+.sidebar__logo p {
+    font-size: .72rem;
+    color: #94a3b8;
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+/* NAVEGACIÓN — área principal de enlaces del sidebar */
+.sidebar__nav {
+    flex: 1;
+}
+
+/* LISTA DE ENLACES — organiza verticalmente las opciones del menú */
+.sidebar__nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* ENLACES DEL MENÚ — estilo visual base de cada opción */
+.sidebar__nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: .84rem;
+    font-weight: 500;
+    transition: background .15s, color .15s;
+}
+
+/* ÍCONOS Y ESTADOS DEL MENÚ */
+.sidebar__nav a svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+.sidebar__nav a:hover {
+    background: #1e293b;
+    color: #cbd5e1;
+}
+
+.sidebar__nav a.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* BLOQUE DE USUARIO — sección inferior con identidad del usuario logueado */
+.sidebar__user {
+    border-top: 1px solid #1e293b;
+    padding-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* AVATAR DEL SIDEBAR — círculo con iniciales */
+.sidebar__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: .8rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/* INFORMACIÓN DEL USUARIO — nombre y correo */
+.sidebar__user-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.sidebar__user-info strong {
+    display: block;
+    font-size: .8rem;
+    color: #e2e8f0;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar__user-info span {
+    font-size: .7rem;
+    color: #64748b;
+}
+
+/* BOTÓN CERRAR SESIÓN — acción rápida debajo del usuario */
+.sidebar__logout {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ef4444;
+    font-size: .78rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background .15s;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar__logout:hover {
+    background: #1e293b;
+}
+
+.sidebar__logout svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* MAIN — contenedor del área derecha donde vive todo el contenido */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* TOPBAR — barra superior con título, fecha y saludo */
+.topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.topbar__left h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.topbar__left p {
+    font-size: .78rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+.topbar__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.topbar__right span {
+    font-size: .88rem;
+    font-weight: 600;
+}
+
+/* AVATAR SUPERIOR — círculo con iniciales en la topbar */
+.topbar__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: .82rem;
+    cursor: pointer;
+}
+
+/* CONTENT — zona desplazable donde están filtros, tablas y modales visibles */
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 28px 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ENCABEZADO DE PÁGINA — título principal y botón para crear una transacción */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-header__title {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+/* BOTÓN AÑADIR — acción principal para abrir el formulario de nueva transacción */
+.btn-add {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .88rem;
+    font-weight: 700;
+    padding: 11px 22px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+}
+
+.btn-add:hover {
+    background: #1d4ed8;
+}
+
+.btn-add:active {
+    transform: scale(.97);
+}
+
+.btn-add svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* FILTROS — bloque de selección por mes, tipo o categoría */
+.filters {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    animation: fadeUp .3s ease both;
+}
+
+.filters__title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+/* GRID DE FILTROS — distribuye tres selectores en columnas */
+.filters__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+/* GRUPO DE FILTRO — une etiqueta y select correspondiente */
+.filters__group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filters__label {
+    font-size: .75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: .04em;
+}
+
+/* SELECTOR DE FILTRO — campo visual personalizado con flecha */
+.filters__select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 10px 36px 10px 14px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--text-main);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.filters__select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+
+/* LISTA DE MESES — contenedor de bloques acordeón */
+.months-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: fadeUp .3s .1s ease both;
+}
+
+/* BLOQUE MENSUAL — contiene encabezado desplegable y tabla */
+.month-block {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+/* ENCABEZADO DEL BLOQUE — zona clickeable que abre o cierra el mes */
+.month-block__header {
+    background: var(--table-header);
+    color: #fff;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+}
+
+.month-block__header:hover {
+    background: #243d78;
+}
+
+/* NOMBRE DEL MES — texto del título del acordeón */
+.month-block__name {
+    font-size: .92rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+}
+
+/* CHEVRON DEL BLOQUE — flecha que rota al abrir el contenido */
+.month-block__chevron {
+    transition: transform .25s;
+}
+
+.month-block__chevron svg {
+    width: 20px;
+    height: 20px;
+}
+
+.month-block.open .month-block__chevron {
+    transform: rotate(180deg);
+}
+
+/* CUERPO DEL BLOQUE — oculto por defecto, visible al abrir */
+.month-block__body {
+    display: none;
+    background: var(--surface);
+}
+
+.month-block.open .month-block__body {
+    display: block;
+}
+
+/* TABLA DE TRANSACCIONES — estructura principal de datos */
+.trans-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* FILA DE ENCABEZADOS — zona superior de la tabla */
+.trans-table thead tr {
+    background: #f8fafc;
+    border-bottom: 1px solid var(--border);
+}
+
+/* CELDAS DE ENCABEZADO — títulos de columnas */
+.trans-table th {
+    padding: 12px 16px;
+    font-size: .7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    text-align: left;
+}
+
+/* ALINEACIÓN DERECHA — usada para columnas numéricas o acciones */
+.trans-table th.th--right {
+    text-align: right;
+}
+
+/* FILAS DE DATOS — separadas por líneas suaves */
+.trans-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background .12s;
+}
+
+.trans-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.trans-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* CELDAS DE DATOS — contenido real de cada transacción */
+.trans-table td {
+    padding: 13px 16px;
+    font-size: .84rem;
+    color: var(--text-main);
+    vertical-align: middle;
+}
+
+/* COLUMNA FECHA — estilo más discreto para datos temporales */
+.td--date {
+    color: var(--text-muted);
+    font-size: .82rem;
+    font-weight: 500;
+}
+
+/* BADGES DE TIPO — indica si la transacción es gasto o ingreso */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: .75rem;
+    font-weight: 700;
+}
+
+.badge--gasto {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.badge--ingreso {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+/* CATEGORÍA — texto secundario para clasificar la transacción */
+.td--cat {
+    color: var(--text-muted);
+}
+
+/* MONTO — resalta visualmente el valor monetario */
+.td--amount {
+    font-weight: 700;
+    font-size: .88rem;
+}
+
+.td--amount--gasto {
+    color: var(--red);
+}
+
+.td--amount--ingreso {
+    color: var(--green);
+}
+
+/* DESCRIPCIÓN — texto complementario de la transacción */
+.td--desc {
+    color: var(--text-muted);
+    font-size: .83rem;
+}
+
+/* ACCIONES — celda alineada a la derecha para editar o eliminar */
+.td--actions {
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* BOTONES DE ACCIÓN — base visual compartida para editar y eliminar */
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s, color .15s, transform .15s;
+}
+
+.action-btn svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+/* BOTÓN EDITAR — cambia a azul y hace una pequeña animación */
+.btn-edit {
+    color: var(--text-soft);
+}
+
+.btn-edit:hover {
+    background: #eff6ff;
+    color: var(--accent);
+    animation: pencilWiggle .4s ease;
+}
+
+.btn-edit:active {
+    transform: scale(.88) rotate(10deg);
+}
+
+/* BOTÓN ELIMINAR — cambia a rojo y hace una vibración breve */
+.btn-delete {
+    color: var(--text-soft);
+}
+
+.btn-delete:hover {
+    background: #fff1f2;
+    color: var(--red);
+    animation: trashShake .4s ease;
+}
+
+.btn-delete:active {
+    transform: scale(.88);
+}
+
+/* ANIMACIÓN LÁPIZ — simula un pequeño movimiento de escritura */
+@keyframes pencilWiggle {
+    0%   { transform: rotate(0deg); }
+    20%  { transform: rotate(-12deg); }
+    50%  { transform: rotate(12deg); }
+    80%  { transform: rotate(-6deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* ANIMACIÓN BASURA — pequeño temblor para reforzar la acción de borrar */
+@keyframes trashShake {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-4px) rotate(-5deg); }
+    40%  { transform: translateX(4px)  rotate(5deg); }
+    60%  { transform: translateX(-3px) rotate(-3deg); }
+    80%  { transform: translateX(3px)  rotate(3deg); }
+    100% { transform: translateX(0)    rotate(0); }
+}
+
+/* MODAL OVERLAY — fondo oscuro que cubre toda la pantalla al abrir un modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ESTADO ACTIVO DEL MODAL — hace visible el overlay */
+.modal-overlay.active {
+    display: flex;
+}
+
+/* TARJETA BASE DEL MODAL — contenedor principal de formularios */
+.modal__card {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    animation: slideDown .25s ease;
+}
+
+/* CABECERA DEL MODAL — título y botón de cierre */
+.modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.modal__title {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+/* BOTÓN CERRAR MODAL — ícono X */
+.modal__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-soft);
+    padding: 4px;
+    border-radius: 6px;
+    transition: background .12s;
+}
+
+.modal__close:hover {
+    background: #f1f5f9;
+    color: var(--text-main);
+}
+
+.modal__close svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+/* GRID DEL MODAL — organiza campos en dos columnas */
+.modal__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* COLUMNA COMPLETA — hace que un campo ocupe todo el ancho del grid */
+.modal__grid .col-full {
+    grid-column: 1 / -1;
+}
+
+/* FIELD — contenedor semántico de label + input/select */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field__label {
+    font-size: .75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: .04em;
+}
+
+/* INPUTS Y SELECTS DEL MODAL — estilo base */
+.field__input,
+.field__select {
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 10px 14px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--text-main);
+    background: var(--surface);
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.field__input:focus,
+.field__select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+
+/* SELECT PERSONALIZADO — agrega ícono de flecha */
+.field__select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+/* ACCIONES DEL MODAL — fila de botones inferiores */
+.modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+/* BOTÓN CANCELAR — acción secundaria */
+.btn-cancel {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background .12s;
+}
+
+.btn-cancel:hover {
+    background: #f8fafc;
+}
+
+/* BOTÓN GUARDAR — acción principal del modal */
+.btn-save {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.btn-save:hover {
+    background: #1d4ed8;
+}
+
+/* TOGGLE TIPO — selector visual entre ingreso y gasto */
+.type-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+    margin-bottom: 18px;
+}
+
+/* BOTONES DEL TOGGLE — opción ingreso o gasto */
+.toggle-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .88rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-muted);
+    transition: background .2s, color .2s, box-shadow .2s;
+}
+
+/* ESTADO ACTIVO INGRESO */
+.toggle-btn.active-ingreso {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37,99,235,.25);
+}
+
+/* ESTADO ACTIVO GASTO */
+.toggle-btn.active-gasto {
+    background: var(--red);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(239,68,68,.25);
+}
+
+/* FILA DE EDICIÓN — usada para monto y fecha en dos columnas */
+.edit-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+/* INPUT CON PREFIJO — por ejemplo símbolo monetario antes del valor */
+.input-prefix-wrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    overflow: hidden;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.input-prefix-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+
+/* SÍMBOLO DEL PREFIJO — como $ antes del input */
+.input-prefix-wrap__symbol {
+    padding: 10px 10px 10px 14px;
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: #f8fafc;
+    border-right: 1px solid var(--border);
+}
+
+.input-prefix-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px 14px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--text-main);
+    background: transparent;
+}
+
+/* INPUT CON ÍCONO — usado para fechas u otros campos con símbolo visual */
+.input-icon-wrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    overflow: hidden;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.input-icon-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+
+/* ÍCONO DEL CAMPO — por ejemplo calendario */
+.input-icon-wrap__icon {
+    padding: 10px 10px 10px 14px;
+    color: var(--text-soft);
+    display: flex;
+    align-items: center;
+}
+
+.input-icon-wrap__icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.input-icon-wrap input[type="date"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px 14px 10px 4px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .85rem;
+    color: var(--text-main);
+    background: transparent;
+}
+
+/* FILA DE RECURRENCIA — contiene texto y switch */
+.recurrent-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 12px 14px;
+    margin-bottom: 4px;
+}
+
+.recurrent-row__label {
+    font-size: .84rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* SWITCH — control deslizante hecho solo con CSS */
+.switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch__track {
+    position: absolute;
+    inset: 0;
+    background: #cbd5e1;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.switch__track::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform .2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+
+.switch input:checked + .switch__track {
+    background: var(--accent);
+}
+
+.switch input:checked + .switch__track::before {
+    transform: translateX(20px);
+}
+
+/* BOTÓN ACTUALIZAR — acción principal del modal editar */
+.btn-update {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background .15s, transform .1s;
+    margin-bottom: 10px;
+}
+
+.btn-update:hover {
+    background: #1d4ed8;
+}
+
+.btn-update:active {
+    transform: scale(.98);
+}
+
+.btn-update svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* BOTÓN CANCELAR EDICIÓN — secundaria debajo del actualizar */
+.btn-cancel-edit {
+    width: 100%;
+    background: none;
+    border: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background .12s;
+}
+
+.btn-cancel-edit:hover {
+    background: #f1f5f9;
+}
+
+/* MODAL ELIMINAR — variante más compacta y enfocada en confirmación */
+.modal__card--delete {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    animation: slideDown .25s ease;
+}
+
+/* CABECERA DE ELIMINACIÓN — icono rojo y título */
+.delete__header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+/* ÍCONO DE ALERTA — círculo rojo para reforzar visualmente el peligro */
+.delete__icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #fee2e2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--red);
+}
+
+.delete__icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.delete__title {
+    font-size: 1.05rem;
+    font-weight: 800;
+}
+
+/* MENSAJE DE ADVERTENCIA — explica la acción irreversible */
+.delete__warning {
+    font-size: .84rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+
+/* RESUMEN DE DATOS A ELIMINAR — muestra información de la transacción */
+.delete__info {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.delete__info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete__info-label {
+    font-size: .82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.delete__info-value {
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.delete__info-value--red {
+    color: var(--red);
+}
+
+/* ACCIONES DE ELIMINACIÓN — confirmar o cancelar */
+.delete__actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* BOTÓN CONFIRMAR ELIMINACIÓN — Acción irreversible */
+.btn-confirm-delete {
+    flex: 1; /* Ocupa el mismo espacio que el botón cancelar */
+    background: var(--red); /* Color rojo para indicar peligro */
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .88rem;
+    font-weight: 700;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+}
+
+/* EFECTO HOVER — Oscurece el botón para retroalimentación visual */
+.btn-confirm-delete:hover {
+    background: #dc2626;
+}
+
+/* EFECTO ACTIVE — Ligera reducción al hacer clic */
+.btn-confirm-delete:active {
+    transform: scale(.97);
+}
+
+/* BOTÓN CANCELAR ELIMINACIÓN — Acción segura y secundaria */
+.btn-cancel-delete {
+    flex: 1; /* Mantiene proporción uniforme con el botón confirmar */
+    background: #f1f5f9;
+    color: var(--text-muted);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: .88rem;
+    font-weight: 600;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+/* EFECTO HOVER — Oscurece ligeramente el fondo */
+.btn-cancel-delete:hover {
+    background: #e2e8f0;
+}
+
+/* ============================================================
+   ANIMACIONES GENERALES
+   Definen efectos visuales para mejorar la experiencia de usuario
+   ============================================================ */
+
+/* ANIMACIÓN FADE-UP — Aparición suave desde abajo */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ANIMACIÓN SLIDE-DOWN — Aparición descendente para modales */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 
+   SCROLLBAR PERSONALIZADO
+   Mejora la estética del desplazamiento vertical */
+
+.content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+/* 
+   ANIMACIONES DE ENTRADA SUAVES
+   Aplicadas a los principales componentes de la interfaz */
+
+/* DESPLAZAMIENTO SUAVE HACIA ARRIBA */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* DESPLAZAMIENTO SUAVE DESDE LA IZQUIERDA */
+@keyframes fadeSlideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* EFECTO POP — Aparición con ligero escalado */
+@keyframes softPop {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ANIMACIÓN DEL SIDEBAR */
+.sidebar {
+    animation: fadeSlideRight .45s ease both;
+}
+
+/* ANIMACIÓN DEL TOPBAR */
+.topbar {
+    animation: fadeSlideUp .40s ease both;
+}
+
+/* ANIMACIÓN ESCALONADA DEL CONTENIDO */
+.content > * {
+    opacity: 0;
+    animation: fadeSlideUp .5s ease forwards;
+}
+
+.content > *:nth-child(1) { animation-delay: .06s; }
+.content > *:nth-child(2) { animation-delay: .14s; }
+.content > *:nth-child(3) { animation-delay: .22s; }
+.content > *:nth-child(4) { animation-delay: .30s; }
+.content > *:nth-child(5) { animation-delay: .38s; }
+.content > *:nth-child(6) { animation-delay: .46s; }
+
+/* ANIMACIÓN DE TARJETAS Y MODALES */
+.filters,
+.months-list,
+.month-block,
+.modal__card,
+.modal__card--delete {
+    animation: softPop .38s ease both;
+}
+
+/* 
+   ACCESIBILIDAD — RESPETO A USUARIOS CON REDUCCIÓN DE MOVIMIENTO */
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .topbar,
+    .content > *,
+    .filters,
+    .months-list,
+    .month-block,
+    .modal__card,
+    .modal__card--delete {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* 
+   AJUSTES GENERALES
+   Previenen desbordamientos horizontales */
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img, svg, canvas, table {
+    max-width: 100%;
+}
+
+/* 
+   RESPONSIVE DESIGN — ADAPTACIÓN A DIFERENTES DISPOSITIVOS */
+
+/* TABLET */
+@media (max-width: 1100px) {
+    .filters__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .modal__grid,
+    .edit-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* TABLET Y MÓVIL */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 18px 14px 16px;
+        border-bottom: 1px solid #1e293b;
+    }
+
+    .sidebar__nav ul {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 8px;
+        min-width: max-content;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .btn-add {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .filters__grid,
+    .modal__grid,
+    .edit-row {
+        grid-template-columns: 1fr !important;
+    }
+
+    .month-block__body {
+        overflow-x: auto;
+    }
+
+    .trans-table {
+        min-width: 760px;
+    }
+
+    .modal__card,
+    .modal__card--delete {
+        width: min(95vw, 520px);
+        padding: 22px 18px;
+    }
+
+    .modal__actions {
+        flex-direction: column;
+    }
+
+    .modal__actions > * {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* MÓVIL PEQUEÑO */
+@media (max-width: 600px) {
+    .content {
+        padding: 16px 14px 24px;
+    }
+
+    .page-header__title {
+        font-size: 1.22rem;
+    }
+
+    .filters,
+    .month-block__body,
+    .modal__card,
+    .modal__card--delete {
+        padding: 16px;
+    }
+
+    .trans-table {
+        min-width: 680px;
+    }
+
+    .trans-table td {
+        font-size: .8rem;
+        padding: 12px 14px;
+    }
+
+    .badge {
+        font-size: .7rem;
+        padding: 4px 10px;
+    }
+
+    .modal__title {
+        font-size: 1rem;
+    }
+}
