@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FinanControl – Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="estilos.css"/>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <p class="brand">Finan<span>Control</span></p>
+    <p class="tagline">Gestión Financiera</p>
+  </div>
+  <nav class="sidebar-nav" aria-label="Navegación principal">
+    <ul>
+      <li><a href="Dashboard.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a></li>
+      <li><a href="Transacciones.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+        Transacciones
+      </a></li>
+      <li><a href="Reportes.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0119 9.414V19a2 2 0 01-2 2z"/></svg>
+        Reportes
+      </a></li>
+      <li><a href="metas.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/></svg>
+        Metas
+      </a></li>
+      <li><a href="grupos.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Grupos
+      </a></li>
+      <li><a href="perfil.html" class="active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Perfil
+      </a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">LV</div>
+      <div class="user-info">
+        <p class="name">Laura Vargas</p>
+        <p class="email">laura@gmail.com</p>
+      </div>
+    </div>
+    <button class="sidebar__logout" type="button" onclick="window.location.href='Inicio.html'">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+      </svg>
+      Cerrar Sesión
+    </button>
+  </div>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="page-title">Perfil</h1>
+      <p class="page-date" id="today-date">Cargando fecha...</p>
+    </div>
+    <div class="topbar-right">
+      <span class="greeting">Hola Laura!</span>
+      <div class="topbar-avatar">LV</div>
+    </div>
+  </header>
+
+  <div class="content" style="display:flex;flex-direction:column;gap:20px">
+
+    <div class="perfil-toast" id="perfilToast" aria-live="polite"></div>
+
+    <div class="page-heading">
+      <h2>Perfil</h2>
+      <p>Administra tu información personal y configuración de cuenta.</p>
+    </div>
+
+    <section class="section-card-perfil" aria-labelledby="tituloInfoPersonal">
+      <div class="section-header-perfil">
+        <div class="section-header-left">
+          <span class="section-icon" aria-hidden="true">👤</span>
+          <h2 class="section-title-text" id="tituloInfoPersonal">Información Personal</h2>
+        </div>
+        <button class="btn-outline btn-outline--perfil" onclick="openModal('modalEditarInfo')" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Editar Información
+        </button>
+      </div>
+      <div class="section-body">
+        <div class="personal-layout">
+          <label class="avatar-wrap avatar-wrap--clickable" aria-label="Foto de perfil" for="avatarInput">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </label>
+          <input type="file" id="avatarInput" accept="image/*" hidden>
+          <dl class="info-grid">
+            <div class="info-item">
+              <dt class="info-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Nombre Completo
+              </dt>
+              <dd class="info-value">Laura Vargas</dd>
+            </div>
+            <div class="info-item">
+              <dt class="info-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Correo Electrónico
+              </dt>
+              <dd class="info-value">laura@gmail.com</dd>
+            </div>
+            <div class="info-item">
+              <dt class="info-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+                Teléfono
+              </dt>
+              <dd class="info-value">+57 310 234 5678</dd>
+            </div>
+            <div class="info-item">
+              <dt class="info-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Fecha de Registro
+              </dt>
+              <dd class="info-value">15 de marzo, 2024</dd>
+            </div>
+            <div class="info-item">
+              <dt class="info-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                Documento de Identidad
+              </dt>
+              <dd class="info-value">1.052.340.878</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card-perfil" aria-labelledby="tituloSeguridad">
+      <div class="section-header-perfil">
+        <div class="section-header-left">
+          <span class="section-icon" aria-hidden="true">🔒</span>
+          <h2 class="section-title-text" id="tituloSeguridad">Seguridad</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="security-row">
+          <div class="security-row-left">
+            <div class="sec-icon-wrap blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <p class="sec-title">Cambiar Contraseña</p>
+          </div>
+          <button class="btn-text" type="button" onclick="openModal('modalCambiarPassword')">Cambiar</button>
+        </div>
+        <div class="security-row">
+          <div class="security-row-left">
+            <div class="sec-icon-wrap green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <p class="sec-title">Verificación en Dos Pasos</p>
+              <p class="sec-desc">Agrega una capa extra de seguridad a tu cuenta</p>
+            </div>
+          </div>
+          <div class="toggle" data-toggle="switch" role="switch" aria-checked="false" tabindex="0"><div class="toggle-knob"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card-perfil" aria-labelledby="tituloConfigFin">
+      <div class="section-header-perfil">
+        <div class="section-header-left">
+          <span class="section-icon" aria-hidden="true">⚙️</span>
+          <h2 class="section-title-text" id="tituloConfigFin">Configuración Financiera</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <dl class="config-grid">
+          <div class="config-item">
+            <dt class="config-label">Moneda Predeterminada</dt>
+            <dd class="config-value"><select class="perfil-select" id="monedaSelect"><option selected>COP – Peso Colombiano</option><option>USD – Dólar Estadounidense</option><option>EUR – Euro</option></select></dd>
+          </div>
+          <div class="config-item">
+            <dt class="config-label">Día de Corte Mensual</dt>
+            <dd class="config-value"><select class="perfil-select" id="corteSelect"><option selected>Día 1</option><option>Día 2</option><option>Día 3</option><option>Día 4</option><option>Día 5</option><option>Día 6</option><option>Día 7</option><option>Día 8</option><option>Día 9</option><option>Día 10</option><option>Día 11</option><option>Día 12</option><option>Día 13</option><option>Día 14</option><option>Día 15</option><option>Día 16</option><option>Día 17</option><option>Día 18</option><option>Día 19</option><option>Día 20</option><option>Día 21</option><option>Día 22</option><option>Día 23</option><option>Día 24</option><option>Día 25</option><option>Día 26</option><option>Día 27</option><option>Día 28</option></select></dd>
+          </div>
+        </dl>
+        <div class="config-toggles">
+          <div class="config-toggle-row">
+            <div>
+              <p class="ct-label">Alertas de Presupuesto</p>
+              <p class="ct-desc">Notificarte cuando superes tu presupuesto</p>
+            </div>
+            <div class="toggle on" data-toggle="switch" role="switch" aria-checked="true" tabindex="0"><div class="toggle-knob"></div></div>
+          </div>
+          <div class="config-toggle-row">
+            <div>
+              <p class="ct-label">Recordatorios de Metas</p>
+              <p class="ct-desc">Recordatorios semanales del progreso</p>
+            </div>
+            <div class="toggle on" data-toggle="switch" role="switch" aria-checked="true" tabindex="0"><div class="toggle-knob"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card-perfil" aria-labelledby="tituloNotif">
+      <div class="section-header-perfil">
+        <div class="section-header-left">
+          <span class="section-icon" aria-hidden="true">🔔</span>
+          <h2 class="section-title-text" id="tituloNotif">Notificaciones</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <ul style="list-style:none">
+          <li class="notif-row">
+            <div class="notif-left">
+              <div class="notif-dot blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div><p class="notif-title">Notificaciones por Correo</p><p class="notif-desc">Recibir actualizaciones en tu email</p></div>
+            </div>
+            <div class="toggle on" data-toggle="switch" role="switch" aria-checked="true" tabindex="0"><div class="toggle-knob"></div></div>
+          </li>
+          <li class="notif-row">
+            <div class="notif-left">
+              <div class="notif-dot orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+              <div><p class="notif-title">Presupuesto Superado</p><p class="notif-desc">Alerta cuando superes el límite de gastos</p></div>
+            </div>
+            <div class="toggle on" data-toggle="switch" role="switch" aria-checked="true" tabindex="0"><div class="toggle-knob"></div></div>
+          </li>
+          <li class="notif-row">
+            <div class="notif-left">
+              <div class="notif-dot green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+              <div><p class="notif-title">Aporte Automático</p><p class="notif-desc">Recordatorio cuando se ejecuta un aporte</p></div>
+            </div>
+            <div class="toggle" data-toggle="switch" role="switch" aria-checked="false" tabindex="0"><div class="toggle-knob"></div></div>
+          </li>
+          <li class="notif-row">
+            <div class="notif-left">
+              <div class="notif-dot purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+              <div><p class="notif-title">Resumen Mensual</p><p class="notif-desc">Recibir resumen de tus finanzas al mes</p></div>
+            </div>
+            <div class="toggle on" data-toggle="switch" role="switch" aria-checked="true" tabindex="0"><div class="toggle-knob"></div></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-card-perfil" aria-labelledby="tituloActividad">
+      <div class="section-header-perfil">
+        <div class="section-header-left">
+          <span class="section-icon" aria-hidden="true">📊</span>
+          <h2 class="section-title-text" id="tituloActividad">Resumen de Actividad</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <ul class="activity-grid" style="list-style:none">
+          <li><article class="activity-card blue">
+            <span class="ac-icon" aria-hidden="true">💳</span>
+            <p class="ac-value">342</p>
+            <p class="ac-label">Transacciones Registradas</p>
+          </article></li>
+          <li><article class="activity-card green">
+            <span class="ac-icon" aria-hidden="true">🎯</span>
+            <p class="ac-value">3</p>
+            <p class="ac-label">Metas Activas</p>
+          </article></li>
+          <li><article class="activity-card purple">
+            <span class="ac-icon" aria-hidden="true">👥</span>
+            <p class="ac-value" style="font-size:15px;font-weight:600">Familia Martínez</p>
+            <p class="ac-label">Grupo Familiar</p>
+          </article></li>
+          <li><article class="activity-card orange">
+            <span class="ac-icon" aria-hidden="true">📅</span>
+            <p class="ac-value" style="font-size:13px;font-weight:600">1 febrero, 2026</p>
+            <p class="ac-label">Último Acceso</p>
+            <p class="ac-sub">10:32 AM</p>
+          </article></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="danger-zone" aria-labelledby="tituloZona">
+      <div class="danger-zone-header">
+        <span class="dz-icon" aria-hidden="true">⚠️</span>
+        <h2 class="dz-title" id="tituloZona">Zona de Seguridad</h2>
+      </div>
+      <div class="danger-row">
+        <div>
+          <p class="dr-title">Cerrar Sesión en Todos los Dispositivos</p>
+          <p class="dr-desc">Esto cerrará sesión en todos los dispositivos donde hayas iniciado sesión.</p>
+        </div>
+        <button class="btn-danger" onclick="openModal('modalCerrarSesiones')">Cerrar Sesiones</button>
+      </div>
+      <div class="danger-row">
+        <div>
+          <p class="dr-title">Eliminar Cuenta Permanentemente</p>
+          <p class="dr-desc">Esta acción es irreversible. Se eliminarán todas tus transacciones y configuraciones.</p>
+        </div>
+        <button class="btn-danger-outline" onclick="openModal('modalEliminarCuenta')">Eliminar Cuenta</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div class="modal-overlay" id="modalEditarInfo" role="dialog" aria-modal="true" aria-labelledby="tituloEditarInfo">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="tituloEditarInfo">Editar Información Personal</h2>
+      <button class="modal-close" onclick="closeModal('modalEditarInfo')" aria-label="Cerrar">×</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="p-nombre">Nombre Completo *</label>
+      <input class="form-input" id="p-nombre" type="text" value="Laura Vargas"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="p-email">Correo Electrónico *</label>
+      <input class="form-input" id="p-email" type="email" value="laura@gmail.com"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="p-tel">Teléfono</label>
+      <input class="form-input" id="p-tel" type="tel" value="+57 310 234 5678"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="p-doc">Documento de Identidad</label>
+      <input class="form-input" id="p-doc" type="text" value="1.052.340.878"/>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-modal-primary" type="button" onclick="guardarInfoPerfil()">Guardar Cambios</button>
+      <button class="btn-secondary" onclick="closeModal('modalEditarInfo')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalCerrarSesiones" role="dialog" aria-modal="true" aria-labelledby="tituloCerrar">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h2 class="modal-title" id="tituloCerrar">Cerrar Todas las Sesiones</h2>
+      <button class="modal-close" onclick="closeModal('modalCerrarSesiones')" aria-label="Cerrar">×</button>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-dim);line-height:1.6">
+      Se cerrará sesión en todos los dispositivos donde hayas iniciado sesión. Deberás volver a iniciar sesión en cada dispositivo.
+    </p>
+    <div class="modal-footer">
+      <button class="btn-modal-danger" type="button" onclick="cerrarSesiones()">Cerrar Sesiones</button>
+      <button class="btn-secondary" onclick="closeModal('modalCerrarSesiones')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalEliminarCuenta" role="dialog" aria-modal="true" aria-labelledby="tituloEliminarCuenta">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h2 class="modal-title" id="tituloEliminarCuenta">⚠️ ¿Eliminar Cuenta?</h2>
+      <button class="modal-close" onclick="closeModal('modalEliminarCuenta')" aria-label="Cerrar">×</button>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-dim);line-height:1.6">
+      Esta acción es permanente y no se puede deshacer. Se eliminarán:
+    </p>
+    <ul class="warning-list">
+      <li class="warning-item">Todas tus transacciones</li>
+      <li class="warning-item">Tus metas y planes</li>
+      <li class="warning-item">Tus grupos y miembros</li>
+      <li class="warning-item">Todas tus configuraciones</li>
+    </ul>
+    <div class="modal-footer">
+      <button class="btn-modal-danger" type="button" onclick="eliminarCuenta()">Sí, Eliminar</button>
+      <button class="btn-secondary" onclick="closeModal('modalEliminarCuenta')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(id)  { document.getElementById(id).classList.add('open'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+  document.querySelectorAll('.modal-overlay').forEach(o => {
+    o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
+  });
+
+  document.querySelectorAll('.toggle').forEach(toggle => {
+    toggle.addEventListener('click', function () {
+      this.classList.toggle('on');
+      this.setAttribute('aria-checked', this.classList.contains('on') ? 'true' : 'false');
+    });
+  });
+
+  const todayDate = document.getElementById('today-date');
+  if (todayDate) {
+    const now = new Date();
+    todayDate.textContent = now.toLocaleDateString('es-CO', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+</script>
+
+<div class="modal-overlay" id="modalCambiarPassword" role="dialog" aria-modal="true" aria-labelledby="tituloCambiarPassword">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="tituloCambiarPassword">Cambiar Contraseña</h2>
+      <button class="modal-close" onclick="closeModal('modalCambiarPassword')" aria-label="Cerrar">×</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="pass-actual">Contraseña actual</label>
+      <input class="form-input" id="pass-actual" type="password" placeholder="Ingresa tu contraseña actual"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="pass-nueva">Nueva contraseña</label>
+      <input class="form-input" id="pass-nueva" type="password" placeholder="Nueva contraseña"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="pass-confirmar">Confirmar nueva contraseña</label>
+      <input class="form-input" id="pass-confirmar" type="password" placeholder="Repite la nueva contraseña"/>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-modal-primary" type="button" onclick="guardarPassword()">Actualizar Contraseña</button>
+      <button class="btn-secondary" type="button" onclick="closeModal('modalCambiarPassword')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script src="auth.js"></script>
+
+</body>
+</html>
