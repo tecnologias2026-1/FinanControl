@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<!--  FINAN CONTROL WEB — Módulo de Metas -->
+<html lang="es">
+
+<!-- HEAD — fuentes, estilos y metadatos. -->
+<head>
+    <!-- Codificación: permite mostrar tildes y caracteres especiales -->
+    <meta charset="UTF-8">
+
+    <!-- Vista adaptable: la página se ajusta a celular, tablet y escritorio -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título de la pestaña -->
+    <title>FinanControl – Metas</title>
+
+    <!-- Fuente tipográfica principal, igual al Dashboard -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Hoja de estilos compartida -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<!-- BODY — TODO el contenido visible -->
+<body>
+
+    <!-- ASIDE — Sidebar lateral -->
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+        <div class="sidebar__logo">
+            <h1>Finan<span>Control</span></h1>
+            <p>Gestión Financiera</p>
+        </div>
+
+        <!-- MENÚ DE NAVEGACIÓN -->
+        <nav class="sidebar__nav" aria-label="Navegación principal">
+            <ul>
+                <li>
+                    <a href="Dashboard.html">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <rect x="3"  y="3"  width="7" height="7" rx="1"/>
+                            <rect x="14" y="3"  width="7" height="7" rx="1"/>
+                            <rect x="3"  y="14" width="7" height="7" rx="1"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="Transacciones.html">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/>
+                        </svg>
+                        Transacciones
+                    </a>
+                </li>
+
+                <li>
+                    <a href="Reportes.html">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6M5 21h14a2 2 0 002-2V7l-5-5H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                        Reportes
+                    </a>
+                </li>
+
+                <li>
+                    <a href="metas.html" class="active">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/>
+                        </svg>
+                        Metas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="grupos.html">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                      </svg>
+                      Grupos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="perfil.html">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        Perfil
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- BLOQUE DE USUARIO -->
+        <div class="sidebar__user">
+            <div class="sidebar__avatar">LV</div>
+            <div class="sidebar__user-info">
+                <strong>Laura Vargas</strong>
+                <span>laura@email.com</span>
+            </div>
+        </div>
+
+        <!-- BOTÓN CERRAR SESIÓN -->
+        <button class="sidebar__logout" type="button" onclick="window.location.href='index.html'">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+          </svg>
+          Cerrar Sesión
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN — área principal -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar__left">
+                <h2>Metas</h2>
+                <p id="today-date">Cargando fecha...</p>
+            </div>
+
+            <div class="topbar__right">
+                <span>Hola Laura!</span>
+                <div class="topbar__avatar">LA</div>
+            </div>
+        </header>
+
+
+        <!-- CONTENIDO -->
+        <main class="content">
+
+            <!-- CABECERA DE LA SECCIÓN -->
+            <section class="section-header section-header--page">
+                <div>
+                    <h3 class="section-title">Tus Metas</h3>
+                    <p class="section-subtitle">Haz seguimiento a tus objetivos de ahorro y visualiza tu progreso.</p>
+                </div>
+
+                <button class="btn-primary" onclick="openModal('modalCrear')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Añadir Meta
+                </button>
+            </section>
+
+
+            <!-- RESUMEN RÁPIDO -->
+            <section class="kpi-grid metas-kpi-grid">
+                <div class="kpi-card metas-kpi-card">
+                    <div class="kpi-card__header">
+                        <span class="kpi-card__label">Metas activas</span>
+                        <div class="kpi-card__icon kpi-card__icon--blue">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="kpi-card__amount">6</p>
+                    <span class="kpi-card__change kpi-card__change--up">▲ 2 nuevas este trimestre</span>
+                </div>
+
+                <div class="kpi-card metas-kpi-card">
+                    <div class="kpi-card__header">
+                        <span class="kpi-card__label">Ahorro acumulado</span>
+                        <div class="kpi-card__icon kpi-card__icon--green">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="kpi-card__amount">$17.000.000</p>
+                    <span class="kpi-card__change kpi-card__change--up">▲ +12.4% vs mes anterior</span>
+                </div>
+
+                <div class="kpi-card metas-kpi-card">
+                    <div class="kpi-card__header">
+                        <span class="kpi-card__label">Meta más cercana</span>
+                        <div class="kpi-card__icon kpi-card__icon--yellow">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="kpi-card__amount">Viaje 2026</p>
+                    <span class="kpi-card__change kpi-card__change--up">▲ 80% completada</span>
+                </div>
+
+                <div class="kpi-card metas-kpi-card">
+                    <div class="kpi-card__header">
+                        <span class="kpi-card__label">Pendiente por ahorrar</span>
+                        <div class="kpi-card__icon kpi-card__icon--red">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/>
+                                <circle cx="12" cy="12" r="9"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="kpi-card__amount">$9.100.000</p>
+                    <span class="kpi-card__change kpi-card__change--down">▼ Requiere seguimiento</span>
+                </div>
+            </section>
+
+
+            <!-- METAS DESTACADAS -->
+            <section class="chart-card metas-panel">
+                <div class="section-header">
+                    <div>
+                        <h3 class="panel-title">Metas destacadas</h3>
+                        <p class="panel-subtitle">Objetivos con mayor avance y próximos vencimientos.</p>
+                    </div>
+                </div>
+
+                <div class="featured-grid">
+                    <article class="goal-card">
+                        <div class="goal-card-header">
+                            <div class="goal-card__left">
+                                <div class="goal-icon-wrap goal-icon-wrap--blue">✈️</div>
+                                <div class="goal-meta">
+                                    <p class="goal-name">Viaje 2026</p>
+                                    <p class="goal-date">Fecha límite: 15 Oct 2026</p>
+                                </div>
+                            </div>
+
+                            <button class="edit-btn" onclick="openModal('modalEditar1')" aria-label="Editar Viaje 2026">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <p class="goal-amount">$ 2.000.000</p>
+
+                        <div class="goal-labels">
+                            <span>Meta total</span>
+                            <span class="pct">80%</span>
+                        </div>
+
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 80%"></div>
+                        </div>
+
+                        <div class="goal-footer">
+                            <div class="goal-footer-item">
+                                <span class="label">Monto ahorrado</span>
+                                <strong>$ 1.600.000</strong>
+                            </div>
+
+                            <div class="goal-footer-item">
+                                <span class="label">Falta</span>
+                                <strong>$ 400.000</strong>
+                            </div>
+
+                            <a class="ver-material" href="#">Ver detalle</a>
+                        </div>
+                    </article>
+
+                    <article class="goal-card">
+                        <div class="goal-card-header">
+                            <div class="goal-card__left">
+                                <div class="goal-icon-wrap goal-icon-wrap--purple">🎓</div>
+                                <div class="goal-meta">
+                                    <p class="goal-name">Educación Hija</p>
+                                    <p class="goal-date">Fecha límite: 01 Ene 2034</p>
+                                </div>
+                            </div>
+
+                            <button class="edit-btn" onclick="openModal('modalEditar2')" aria-label="Editar Educación Hija">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <p class="goal-amount">$ 4.000.000</p>
+
+                        <div class="goal-labels">
+                            <span>Meta total</span>
+                            <span class="pct">50%</span>
+                        </div>
+
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill progress-bar-fill--green" style="width: 50%"></div>
+                        </div>
+
+                        <div class="goal-footer">
+                            <div class="goal-footer-item">
+                                <span class="label">Monto ahorrado</span>
+                                <strong>$ 2.000.000</strong>
+                            </div>
+
+                            <div class="goal-footer-item">
+                                <span class="label">Falta</span>
+                                <strong>$ 2.000.000</strong>
+                            </div>
+
+                            <a class="ver-material" href="#">Ver detalle</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+
+            <!-- LLAMADO A LA ACCIÓN -->
+            <section class="cta-banner">
+                <div class="cta-text">
+                    <h3>¿Tienes una nueva meta de ahorro?</h3>
+                    <p>Define tu objetivo, establece un plan y comienza a construir tu futuro financiero hoy mismo.</p>
+                </div>
+
+                <button class="btn-primary" onclick="openModal('modalCrear')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Añadir Nueva Meta
+                </button>
+            </section>
+
+
+            <!-- TODAS LAS METAS -->
+            <section class="resumen metas-resumen">
+                <h3 class="resumen__title">Todas tus Metas</h3>
+                <p class="resumen__sub">Resumen rápido del progreso de cada objetivo.</p>
+
+                <div class="all-grid">
+                    <article class="mini-card">
+                        <div class="mini-card-header">
+                            <span class="mini-icon">✈️</span>
+                            <p class="mini-name">Viaje 2026</p>
+                        </div>
+                        <p class="mini-amount">$ 1.300.000</p>
+                        <p class="mini-pct"><span class="pct-val pct-green">▲ 80%</span> del progreso</p>
+                    </article>
+
+                    <article class="mini-card">
+                        <div class="mini-card-header">
+                            <span class="mini-icon">🎓</span>
+                            <p class="mini-name">Educación Hija</p>
+                        </div>
+                        <p class="mini-amount">$ 2.000.000</p>
+                        <p class="mini-pct"><span class="pct-val pct-green">▲ 50%</span> del progreso</p>
+                    </article>
+
+                    <article class="mini-card">
+                        <div class="mini-card-header">
+                            <span class="mini-icon">🛡️</span>
+                            <p class="mini-name">Fondo de Emergencia</p>
+                        </div>
+                        <p class="mini-amount">$ 0</p>
+                        <p class="mini-pct"><span class="pct-val pct-red">▼ 0%</span> del progreso</p>
+                    </article>
+
+                    <article class="mini-card">
+                        <div class="mini-card-header">
+                            <span class="mini-icon">🚗</span>
+                            <p class="mini-name">Nuevo Vehículo</p>
+                        </div>
+                        <p class="mini-amount">$ 5.000.000</p>
+                        <p class="mini-pct"><span class="pct-val pct-yellow">▲ 35%</span> del progreso</p>
+                    </article>
+
+                    <article class="mini-card">
+                        <div class="mini-card-header">
+                            <span class="mini-icon">📈</span>
+                            <p class="mini-name">Inversión ETF</p>
+                        </div>
+                        <p class="mini-amount">$ 8.500.000</p>
+                        <p class="mini-pct"><span class="pct-val pct-green">▲ 62%</span> del progreso</p>
+                    </article>
+
+                    <article class="mini-card">
+                        <div class="mini-card-header">
+                            <span class="mini-icon">🎁</span>
+                            <p class="mini-name">Regalos Navidad</p>
+                        </div>
+                        <p class="mini-amount">$ 200.000</p>
+                        <p class="mini-pct"><span class="pct-val pct-yellow">▲ 20%</span> del progreso</p>
+                    </article>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+
+    <!-- MODAL CREAR META -->
+    <div class="modal-overlay" id="modalCrear" role="dialog" aria-modal="true" aria-labelledby="tituloCrear">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="tituloCrear">Crear nueva meta</h2>
+                <button class="modal-close" onclick="closeModal('modalCrear')" aria-label="Cerrar">×</button>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="crear-nombre">Nombre de la meta *</label>
+                <input class="form-input" id="crear-nombre" type="text" placeholder="Ej: Viaje a Europa">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="crear-tipo">Tipo / Categoría *</label>
+                <select class="form-select" id="crear-tipo">
+                    <option value="" disabled selected>Seleccionar</option>
+                    <option>Viaje</option>
+                    <option>Educación</option>
+                    <option>Vehículo</option>
+                    <option>Fondo de Emergencia</option>
+                    <option>Inversión</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="crear-objetivo">Monto objetivo (COP) *</label>
+                    <input class="form-input" id="crear-objetivo" type="text" placeholder="$ 3.000.000">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="crear-inicial">Monto inicial (opcional)</label>
+                    <input class="form-input" id="crear-inicial" type="text" placeholder="$ 500.000">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="crear-fecha">Fecha límite</label>
+                <input class="form-input" id="crear-fecha" type="date">
+            </div>
+
+            <div class="toggle-row">
+                <span class="toggle-label">Aporte automático mensual</span>
+                <div class="toggle" onclick="toggleSwitch(this)" role="switch" aria-checked="false">
+                    <div class="toggle-knob"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-modal-primary" onclick="closeModal('modalCrear')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Guardar Meta
+                </button>
+                <button class="btn-secondary" onclick="closeModal('modalCrear')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL EDITAR META 1 -->
+    <div class="modal-overlay" id="modalEditar1" role="dialog" aria-modal="true" aria-labelledby="tituloEditar1">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="tituloEditar1">Editar meta</h2>
+                <button class="modal-close" onclick="closeModal('modalEditar1')" aria-label="Cerrar">×</button>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="e1-nombre">Nombre de la meta *</label>
+                <input class="form-input" id="e1-nombre" type="text" value="Viaje 2026">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="e1-tipo">Tipo / Categoría *</label>
+                <select class="form-select" id="e1-tipo">
+                    <option selected>Viaje</option>
+                    <option>Educación</option>
+                    <option>Vehículo</option>
+                    <option>Fondo de Emergencia</option>
+                    <option>Inversión</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="e1-objetivo">Monto objetivo (COP) *</label>
+                    <input class="form-input" id="e1-objetivo" type="text" value="$ 3.000.000">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="e1-inicial">Monto inicial (opcional)</label>
+                    <input class="form-input" id="e1-inicial" type="text" value="$ 500.000">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="e1-fecha">Fecha límite</label>
+                <input class="form-input" id="e1-fecha" type="date">
+            </div>
+
+            <div class="toggle-row">
+                <span class="toggle-label">Aporte automático mensual</span>
+                <div class="toggle on" onclick="toggleSwitch(this)" role="switch" aria-checked="true">
+                    <div class="toggle-knob"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="e1-aporte">Monto aporte</label>
+                <input class="form-input" id="e1-aporte" type="text" value="$ 150.031">
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-modal-primary" onclick="closeModal('modalEditar1')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Guardar Meta
+                </button>
+                <button class="btn-secondary" onclick="closeModal('modalEditar1')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL EDITAR META 2 -->
+    <div class="modal-overlay" id="modalEditar2" role="dialog" aria-modal="true" aria-labelledby="tituloEditar2">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="tituloEditar2">Editar meta</h2>
+                <button class="modal-close" onclick="closeModal('modalEditar2')" aria-label="Cerrar">×</button>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="e2-nombre">Nombre de la meta *</label>
+                <input class="form-input" id="e2-nombre" type="text" value="Educación Hija">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="e2-tipo">Tipo / Categoría *</label>
+                <select class="form-select" id="e2-tipo">
+                    <option>Viaje</option>
+                    <option selected>Educación</option>
+                    <option>Vehículo</option>
+                    <option>Fondo de Emergencia</option>
+                    <option>Inversión</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="e2-objetivo">Monto objetivo (COP) *</label>
+                    <input class="form-input" id="e2-objetivo" type="text" value="$ 4.000.000">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="e2-inicial">Monto inicial (opcional)</label>
+                    <input class="form-input" id="e2-inicial" type="text" value="$ 500.000">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="e2-fecha">Fecha límite</label>
+                <input class="form-input" id="e2-fecha" type="date">
+            </div>
+
+            <div class="toggle-row">
+                <span class="toggle-label">Aporte automático mensual</span>
+                <div class="toggle on" onclick="toggleSwitch(this)" role="switch" aria-checked="true">
+                    <div class="toggle-knob"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="e2-aporte">Monto aporte</label>
+                <input class="form-input" id="e2-aporte" type="text" value="$ 200.000">
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-modal-primary" onclick="closeModal('modalEditar2')">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Guardar Meta
+                </button>
+                <button class="btn-secondary" onclick="closeModal('modalEditar2')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        /* FECHA ACTUAL — Formato largo en español */
+        const today = new Date();
+        document.getElementById('today-date').textContent = today.toLocaleDateString('es-CO', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        /* MODALES — abrir */
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+        }
+
+        /* MODALES — cerrar */
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+        }
+
+        /* SWITCH — activa y actualiza aria-checked */
+        function toggleSwitch(element) {
+            element.classList.toggle('on');
+            element.setAttribute('aria-checked', element.classList.contains('on'));
+        }
+
+        /* CIERRE DE MODALES — clic por fuera */
+        document.querySelectorAll('.modal-overlay').forEach((overlay) => {
+            overlay.addEventListener('click', (event) => {
+                if (event.target === overlay) {
+                    overlay.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
