@@ -93,13 +93,36 @@ Agregar imagen del modelo.
 Tablas principales
 
 🧩 7. Documentación del Sistema
-Estructura de Carpetas
-/css
-/js
-/assets
+FinanControl está organizado de forma simple y modular, separando las páginas principales del sistema y sus respectivos archivos de estilo. Esta estructura facilita la navegación, edición y mantenimiento del proyecto.
+En la carpeta principal del proyecto se encuentran los archivos HTML que representan cada vista del sistema, como la página de inicio, inicio de sesión, registro, panel principal, reportes, transacciones, metas, grupos y perfil. También se incluye el archivo auth.js, encargado de algunas funciones de autenticación o redirección.
+Además, en esta misma carpeta se encuentran los archivos CSS que controlan la apariencia visual de cada módulo. Algunos estilos son compartidos, como estilos.css, mientras que otros son específicos para ciertas páginas, como DashboardEstilos.css, ReportesEstilos.css, TransaccionesEstilos.css, Style_Iniciar.css, Style_Inicio.css, Style_Registrarse.css y Style_Sobre.css.
 
-Explicar brevemente qué contiene cada carpeta.
+De acuerdo con la estructura actual del proyecto, los archivos principales son:
+auth.js: archivo JavaScript utilizado para funciones relacionadas con autenticación o redirecciones del sistema.
+Dashboard.html: vista principal del panel de control financiero.
+DashboardEstilos.css: hoja de estilos específica del dashboard.
+estilos.css: hoja de estilos compartida para páginas como metas, grupos y perfil.
+grupos.html: módulo para la gestión de grupos familiares.
+Iniciar.html: página de inicio de sesión.
+Inicio.html: página principal o landing page del sistema.
+metas.html: módulo para la administración de metas financieras.
+perfil.html: módulo de perfil del usuario.
+Registrarse.html: página para el registro de nuevos usuarios.
+Reportes.html: módulo de reportes financieros.
+ReportesEstilos.css: estilos específicos del módulo de reportes.
+Sobre.html: página informativa sobre el sistema.
+Style_Iniciar.css: estilos de la página de inicio de sesión.
+Style_Inicio.css: estilos de la página principal.
+Style_Registrarse.css: estilos de la página de registro.
+Style_Sobre.css: estilos de la página “Sobre”.
+Transacciones.html: módulo para la gestión de transacciones.
+TransaccionesEstilos.css: estilos específicos del módulo de transacciones.
 
 🚀 8. Instalación y Ejecución
 
-Explicar cómo correr el proyecto.
+Para ejecutar el proyecto FinanControl no se requiere instalación de dependencias externas ni compilación previa, ya que está desarrollado con HTML, CSS y JavaScript.
+
+Primero, se debe descargar o clonar el repositorio en el equipo local. Luego, se abre la carpeta del proyecto en Visual Studio Code o en cualquier editor de código. Una vez dentro, basta con abrir el archivo Inicio.html en un navegador web para acceder a la página principal del sistema.
+El flujo de navegación del proyecto inicia en Inicio.html. Desde allí, el usuario puede acceder a las páginas Iniciar.html, Registrarse.html y Sobre.html. Una vez iniciado sesión o registrado, el sistema redirige al usuario al Dashboard.html, desde donde puede navegar a los módulos de Transacciones, Reportes, Metas, Grupos y Perfil.
+
+El sistema cuenta además con diseño responsive, por lo que su interfaz se adapta correctamente a computadores, tablets y dispositivos móviles.
