@@ -93,6 +93,7 @@ Agregar imagen del modelo.
 Tablas principales
 
 🧩 7. Documentación del Sistema
+
 FinanControl está organizado de forma simple y modular, separando las páginas principales del sistema y sus respectivos archivos de estilo. Esta estructura facilita la navegación, edición y mantenimiento del proyecto.
 En la carpeta principal del proyecto se encuentran los archivos HTML que representan cada vista del sistema, como la página de inicio, inicio de sesión, registro, panel principal, reportes, transacciones, metas, grupos y perfil. También se incluye el archivo auth.js, encargado de algunas funciones de autenticación o redirección.
 Además, en esta misma carpeta se encuentran los archivos CSS que controlan la apariencia visual de cada módulo. Algunos estilos son compartidos, como estilos.css, mientras que otros son específicos para ciertas páginas, como DashboardEstilos.css, ReportesEstilos.css, TransaccionesEstilos.css, Style_Iniciar.css, Style_Inicio.css, Style_Registrarse.css y Style_Sobre.css.
