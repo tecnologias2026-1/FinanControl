@@ -1,0 +1,812 @@
+/* Esto le dice al navegador: "olvídate de tus estilos por defecto,
+   empieza desde cero". El box-sizing: border-box es especialmente
+   importante porque hace que cuando le pongas padding a un elemento,
+   NO se agrande — el padding queda dentro del tamaño que tú definiste. */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Aquí guardamos todos los colores, tamaños y sombras que se repiten
+   en el diseño. En lugar de escribir "#2563eb" 20 veces, lo guardamos
+   como --accent y usamos var(--accent) donde lo necesitemos.
+   Si el día de mañana quieres cambiar el color azul, solo lo cambias
+   aquí y se actualiza en toda la página automáticamente. */
+:root {
+    --sidebar-bg:   #0d1117;   /* Fondo oscuro del menú lateral */
+    --sidebar-w:    220px;     /* Ancho del menú lateral */
+    --accent:       #2563eb;   /* Azul principal de la marca */
+    --accent-light: #dbeafe;   /* Versión suavecita del azul */
+    --surface:      #ffffff;   /* Fondo de las tarjetas (blanco) */
+    --bg:           #f1f5f9;   /* Fondo general de la app (gris claro) */
+    --text-main:    #0f172a;   /* Color del texto principal (casi negro) */
+    --text-muted:   #64748b;   /* Texto secundario (gris medio) */
+    --text-soft:    #94a3b8;   /* Texto muy tenue, para detalles menores */
+    --green:        #22c55e;   /* Verde para ingresos o cosas positivas */
+    --red:          #ef4444;   /* Rojo para gastos o cosas negativas */
+    --border:       #e2e8f0;   /* Color de los bordes de las tarjetas */
+    --radius:       14px;      /* Qué tan redondeadas son las esquinas */
+    --shadow:       0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05); /* Sombrita suave */
+}
+
+
+/* El body es el contenedor de toda la página.
+   Con display: flex, le decimos que sus hijos (el sidebar y el main)
+   se pongan uno al lado del otro en fila.
+   height: 100vh hace que ocupe exactamente la altura de la pantalla.
+   overflow: hidden evita que aparezca un scroll en toda la página,
+   el scroll solo va a existir dentro del área de contenido. */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* El sidebar es el menú oscuro de la izquierda.
+   Tiene un ancho fijo de 220px (guardado en la variable --sidebar-w).
+   Con flex-direction: column, sus elementos internos se apilan
+   de arriba hacia abajo: logo, menú, usuario.
+   flex-shrink: 0 le dice al navegador que NUNCA lo encoja,
+   aunque el espacio sea pequeño. */
+.sidebar {
+    width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 28px 16px 24px;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+
+/* Zona del logo en la parte de arriba del sidebar.
+   El padding-bottom de 28px crea espacio entre el logo
+   y el menú de navegación que viene abajo. */
+.sidebar__logo { padding: 0 8px 28px; }
+
+/* El nombre de la app en grande y en negritas.
+   letter-spacing negativo (-.3px) hace que las letras
+   queden un pelín más juntas, efecto muy usado en logos modernos. */
+.sidebar__logo h1 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -.3px;
+}
+
+/* La parte del nombre que va en azul.
+   Esto se logra poniendo esa palabra en un span dentro del h1
+   y aquí solo le cambiamos el color a ese span. */
+.sidebar__logo h1 span { color: var(--accent); }
+
+/* Texto chiquitito debajo del nombre, como un subtítulo o slogan. */
+.sidebar__logo p {
+    font-size: .72rem;
+    color: #94a3b8;
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+
+/* flex: 1 hace que la navegación ocupe TODO el espacio disponible
+   entre el logo (arriba) y el bloque del usuario (abajo).
+   Esto empuja el usuario siempre al fondo del sidebar,
+   sin importar cuántos links tenga el menú. */
+.sidebar__nav { flex: 1; }
+
+/* La lista de links se convierte en columna vertical.
+   gap: 4px pone un pequeño espacio entre cada link
+   sin necesidad de usar margin en cada uno. */
+.sidebar__nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Cada link del menú es un flex para que el ícono
+   y el texto queden en la misma fila, alineados verticalmente.
+   La transition hace que el cambio de color al hacer hover
+   sea suave en lugar de instantáneo. */
+.sidebar__nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: .84rem;
+    font-weight: 500;
+    transition: background .15s, color .15s;
+}
+
+/* Tamaño fijo para los íconos del menú.
+   flex-shrink: 0 evita que el ícono se deforme si el texto es largo. */
+.sidebar__nav a svg      { width: 17px; height: 17px; flex-shrink: 0; }
+
+/* Cuando el mouse pasa por encima: fondo un poco más claro y texto más visible. */
+.sidebar__nav a:hover    { background: #1e293b; color: #cbd5e1; }
+
+/* El link de la página actual se pone con fondo azul y texto blanco.
+   La clase .active se la pone JavaScript cuando cargas esa sección. */
+.sidebar__nav a.active   { background: var(--accent); color: #fff; }
+
+
+/* Bloque de información del usuario al final del sidebar.
+   La línea de arriba (border-top) lo separa visualmente del menú. */
+.sidebar__user {
+    border-top: 1px solid #1e293b;
+    padding-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* El círculo con las iniciales del usuario.
+   border-radius: 50% es lo que lo convierte en círculo.
+   Con flex se centra el texto de las iniciales perfectamente. */
+.sidebar__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: .8rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/* Contenedor del nombre y rol del usuario.
+   overflow: hidden es necesario para que el text-overflow
+   (los puntos suspensivos ...) funcione correctamente. */
+.sidebar__user-info { flex: 1; overflow: hidden; }
+
+/* Nombre del usuario: si es muy largo, se corta con "..." en lugar
+   de romperse o salirse del sidebar. */
+.sidebar__user-info strong {
+    display: block;
+    font-size: .8rem;
+    color: #e2e8f0;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Rol o email del usuario, en gris para que se vea secundario. */
+.sidebar__user-info span { font-size: .7rem; color: #64748b; }
+
+
+/* El botón de cerrar sesión.
+   Aunque en HTML es un button, aquí le quitamos su apariencia
+   de botón (background: transparent, border: none) para que
+   se vea como un link estilizado con el ícono incluido.
+   width: 100% hace que sea fácil de presionar incluso en móvil. */
+.sidebar__logout {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ef4444;
+    font-size: .78rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background .15s;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar__logout:hover { background: #1e293b; }
+
+.sidebar__logout svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+
+/* El área principal que ocupa todo lo que el sidebar no ocupa.
+   flex: 1 le dice "toma todo el espacio horizontal que queda".
+   overflow: hidden contiene el scroll dentro de .content,
+   evitando que el topbar suba al hacer scroll. */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+/* Barra superior con el título y el avatar.
+   Tiene altura fija de 68px y no se mueve aunque hagas scroll,
+   porque el scroll ocurre en .content, no aquí.
+   flex-shrink: 0 es para que nunca se encoja. */
+.topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+/* Título de la sección (ej: "Reportes") en grande y negritas. */
+.topbar__left h2 { font-size: 1.35rem; font-weight: 800; }
+
+/* Subtítulo debajo del título, como la fecha o una descripción corta. */
+.topbar__left p  { font-size: .78rem; color: var(--text-muted); margin-top: 1px; }
+
+/* Lado derecho: donde van el nombre del usuario y el avatar. */
+.topbar__right   { display: flex; align-items: center; gap: 12px; }
+.topbar__right span { font-size: .88rem; font-weight: 600; }
+
+/* Avatar circular en el topbar, igual al del sidebar para consistencia. */
+.topbar__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: .82rem;
+    cursor: pointer;
+}
+
+
+/* El área donde vive todo el contenido de la página.
+   overflow-y: auto pone scroll solo cuando el contenido
+   es más alto que la pantalla (no muestra el scroll si no hace falta).
+   gap: 24px pone espacio automático entre cada sección interna. */
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 28px 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* Tarjeta que contiene la gráfica de barras.
+   min-height: 420px garantiza que la tarjeta no quede muy chica
+   incluso cuando la gráfica está cargando.
+   La animación fadeUp hace que aparezca subiendo suavemente
+   con un pequeño retraso (.18s) para entrar después de los KPIs. */
+.reportes-chart-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px 28px 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    animation: fadeUp .35s .18s ease both;
+    min-height: 420px;
+}
+
+
+/* Cuadrícula de 3 columnas para los KPIs (métricas principales).
+   repeat(3, 1fr) crea 3 columnas del mismo tamaño automáticamente. */
+.reportes-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+/* Tarjeta individual de KPI (ej: Total Ingresos, Total Gastos, Balance).
+   justify-content: space-between pone el texto a la izquierda
+   y el ícono circular a la derecha. */
+.reportes-kpi-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    animation: fadeUp .35s ease both;
+}
+
+/* La 2da y 3ra tarjeta entran con un pequeño retraso adicional
+   para que parezca que aparecen una por una, no todas juntas. */
+.reportes-kpi-card:nth-child(2) { animation-delay: .07s; }
+.reportes-kpi-card:nth-child(3) { animation-delay: .14s; }
+
+/* Etiqueta pequeña en mayúsculas arriba del número (ej: "INGRESOS TOTALES").
+   letter-spacing: .07em separa un poco las letras, estilo típico
+   de texto en mayúsculas para que se vea más legible. */
+.reportes-kpi-card__label {
+    font-size: .67rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* El número grande de la tarjeta KPI.
+   letter-spacing negativo (-.5px) hace que se vea más compacto
+   y elegante, estilo números de dashboard moderno. */
+.reportes-kpi-card__amount {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -.5px;
+}
+
+/* El porcentaje de cambio debajo del número (ej: "+12% vs mes anterior"). */
+.reportes-kpi-card__change {
+    font-size: .73rem;
+    font-weight: 600;
+    margin-top: 6px;
+    display: block;
+}
+
+/* Si el cambio es positivo, va en verde. Si es negativo, en rojo. */
+.reportes-kpi-card__change--up   { color: var(--green); }
+.reportes-kpi-card__change--down { color: var(--red); }
+
+/* Ícono circular a la derecha de la tarjeta KPI.
+   flex-shrink: 0 evita que se deforme si el texto es largo. */
+.reportes-kpi-card__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.reportes-kpi-card__icon svg    { width: 20px; height: 20px; }
+
+/* Tres variantes de color para el ícono según el tipo de KPI. */
+.reportes-kpi-card__icon--green { background: #dcfce7; color: #16a34a; }
+.reportes-kpi-card__icon--red   { background: #fee2e2; color: #dc2626; }
+.reportes-kpi-card__icon--blue  { background: var(--accent-light); color: var(--accent); }
+
+
+/* Encabezado de la tarjeta de gráfica: título y subtítulo arriba de la gráfica. */
+.reportes-chart-card__header   { margin-bottom: 20px; }
+.reportes-chart-card__title    { font-size: 1rem; font-weight: 800; color: var(--text-main); }
+.reportes-chart-card__subtitle { font-size: .78rem; color: var(--text-muted); margin-top: 3px; }
+
+/* Fuerza que la gráfica de barras ocupe todo el ancho disponible
+   y tenga 320px de altura fija. El !important es necesario porque
+   Chart.js pone sus propios estilos directamente en el HTML
+   y sin !important los ignora. */
+#barChart {
+    width: 100% !important;
+    height: 320px !important;
+    display: block;
+}
+
+
+/* Tarjeta que contiene el acordeón de detalles mensuales.
+   Misma apariencia que las demás tarjetas, pero entra
+   con más retraso (.26s) porque es la última sección. */
+.reportes-details {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    animation: fadeUp .35s .26s ease both;
+}
+
+/* Título y subtítulo en la parte superior de la sección de detalles. */
+.reportes-details__title    { font-size: 1rem; font-weight: 800; }
+.reportes-details__subtitle { font-size: .78rem; color: var(--text-muted); margin-top: 3px; margin-bottom: 20px; }
+
+
+/* Cada fila del acordeón (representa un mes).
+   overflow: hidden es importante para que la animación
+   de abrir y cerrar no se vea rara, oculta lo que todavía
+   no debería verse durante la transición.
+   La sombra al hacer hover le da sensación de elevación. */
+.reportes-acc-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow .2s;
+}
+
+/* El último item no necesita margen abajo. */
+.reportes-acc-item:last-child { margin-bottom: 0; }
+
+/* Al pasar el mouse, aparece una sombra sutil para indicar que es interactivo. */
+.reportes-acc-item:hover      { box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+
+/* Cabecera del acordeón: el área que se hace clic para abrir/cerrar.
+   user-select: none evita que al hacer clic rápido se seleccione
+   el texto por accidente. */
+.reportes-acc-item__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    cursor: pointer;
+    user-select: none;
+    background: #fff;
+}
+
+/* Parte izquierda de la cabecera: ícono del mes + nombre y balance. */
+.reportes-acc-item__header-left { display: flex; align-items: center; gap: 12px; }
+
+/* Cuadrito con el ícono del mes (calendario, etc.) */
+.reportes-acc-item__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: var(--accent-light);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.reportes-acc-item__icon svg { width: 18px; height: 18px; }
+
+/* Nombre del mes en negritas y el balance debajo en gris. */
+.reportes-acc-item__month   { font-size: .87rem; font-weight: 800; color: var(--text-main); display: block; }
+.reportes-acc-item__balance { font-size: .74rem; color: var(--text-muted); margin-top: 2px; display: block; }
+
+/* La flechita a la derecha de cada fila del acordeón.
+   Cuando el acordeón está abierto (.open), rota 180 grados
+   para indicar visualmente que está expandido. */
+.reportes-acc-item__chevron { color: var(--text-soft); transition: transform .25s; }
+.reportes-acc-item__chevron svg { width: 18px; height: 18px; }
+.reportes-acc-item.open .reportes-acc-item__chevron { transform: rotate(180deg); }
+
+/* El contenido del acordeón está oculto por defecto (display: none).
+   JavaScript le agrega la clase .open al hacer clic para mostrarlo. */
+.reportes-acc-item__body {
+    display: none;
+    padding: 4px 20px 20px;
+    background: #fff;
+}
+
+/* Cuando el item tiene la clase .open, el cuerpo se hace visible. */
+.reportes-acc-item.open .reportes-acc-item__body { display: block; }
+
+/* Las 3 mini tarjetas (Ingresos, Gastos, Balance) dentro del acordeón
+   se organizan en 3 columnas iguales. */
+.reportes-acc-item__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+
+/* Mini tarjeta base: esquinas redondeadas y borde invisible por defecto
+   (se sobreescribe con las variantes de abajo). */
+.reportes-mini-card {
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid transparent;
+}
+
+/* Cada tipo de mini tarjeta tiene su propio color de fondo y borde
+   para que de un vistazo se entienda qué tipo de dato es. */
+.reportes-mini-card--income  { background: #f0fdf4; border-color: #bbf7d0; } /* Verde para ingresos */
+.reportes-mini-card--expense { background: #fff1f2; border-color: #fecdd3; } /* Rojo para gastos */
+.reportes-mini-card--balance { background: #eff6ff; border-color: #bfdbfe; } /* Azul para balance */
+
+/* Etiqueta pequeña arriba del número en la mini tarjeta. */
+.reportes-mini-card__label {
+    font-size: .74rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Número principal de la mini tarjeta. */
+.reportes-mini-card__amount {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -.3px;
+}
+
+/* Porcentaje de cambio al fondo de la mini tarjeta. */
+.reportes-mini-card__change {
+    font-size: .73rem;
+    font-weight: 600;
+    margin-top: 6px;
+    display: block;
+}
+
+.reportes-mini-card__change--up   { color: var(--green); }
+.reportes-mini-card__change--down { color: var(--red); }
+
+
+/* Animación que hace que los elementos aparezcan subiendo desde abajo.
+   Empieza invisible (opacity: 0) y 12px abajo de su posición real,
+   luego aparece y sube hasta su lugar. Queda muy bonito. */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Scrollbar personalizado para que no se vea el scrollbar feo del sistema.
+   Solo funciona en Chrome, Edge y navegadores parecidos.
+   Lo hacemos de 5px de ancho, gris claro y con esquinas redondeadas. */
+.content::-webkit-scrollbar       { width: 5px; }
+.content::-webkit-scrollbar-track { background: transparent; }
+.content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+
+/* Animación que sube y aparece (parecida a fadeUp pero un poco más pronunciada).
+   Se usa para secciones grandes como las tarjetas principales. */
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación que viene desde la izquierda.
+   Se usa en el sidebar para que entre deslizándose al cargar la página. */
+@keyframes fadeSlideRight {
+    from { opacity: 0; transform: translateX(-18px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Animación de escala: el elemento aparece como si "soplaran" en él,
+   empieza un poquito más pequeño (97%) y llega a su tamaño normal (100%).
+   Se usa para tarjetas y modales. */
+@keyframes softPop {
+    from { opacity: 0; transform: scale(0.97); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+
+/* El sidebar entra deslizándose desde la izquierda. */
+.sidebar { animation: fadeSlideRight .45s ease both; }
+
+/* El topbar entra desde abajo. */
+.topbar  { animation: fadeSlideUp .40s ease both; }
+
+/* Todos los hijos directos de .content entran con animación,
+   pero con retrasos escalonados para que parezca que aparecen
+   uno por uno (primero los KPIs, luego la gráfica, luego el acordeón). */
+.content > * {
+    opacity: 0;
+    animation: fadeSlideUp .5s ease forwards;
+}
+
+.content > *:nth-child(1) { animation-delay: .06s; }
+.content > *:nth-child(2) { animation-delay: .14s; }
+.content > *:nth-child(3) { animation-delay: .22s; }
+.content > *:nth-child(4) { animation-delay: .30s; }
+.content > *:nth-child(5) { animation-delay: .38s; }
+.content > *:nth-child(6) { animation-delay: .46s; }
+
+/* Todos estos elementos usan la animación de escala suave al aparecer. */
+.kpi-card,
+.chart-card,
+.acc-item,
+.reportes-kpi-card,
+.reportes-chart-card,
+.reportes-details,
+.reportes-acc-item,
+.reportes-mini-card,
+.filters,
+.months-list,
+.month-block,
+.modal__card,
+.modal__card--delete {
+    animation: softPop .38s ease both;
+}
+
+/* Si el usuario tiene activada la opción "reducir movimiento" en su sistema
+   (accesibilidad), quitamos TODAS las animaciones y transiciones.
+   Algunas personas con epilepsia o mareos visuales lo necesitan. */
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .topbar,
+    .content > *,
+    .kpi-card,
+    .chart-card,
+    .acc-item,
+    .reportes-kpi-card,
+    .reportes-chart-card,
+    .reportes-details,
+    .reportes-acc-item,
+    .reportes-mini-card,
+    .filters,
+    .months-list,
+    .month-block,
+    .modal__card,
+    .modal__card--delete {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* Esto evita que algún elemento se salga del ancho de la pantalla
+   y cause scroll horizontal, algo que se ve muy mal en móvil. */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* Imágenes, íconos SVG y gráficas canvas nunca se salen de su contenedor. */
+img, svg, canvas { max-width: 100%; }
+
+
+/* En pantallas de hasta 1100px (tablets horizontales):
+   Los KPIs dejan de ir en 3 columnas y pasan a ir uno encima del otro.
+   Las mini tarjetas dentro del acordeón también se apilan. */
+@media (max-width: 1100px) {
+    .reportes-kpi-grid         { grid-template-columns: 1fr; }
+    .reportes-acc-item__cards  { grid-template-columns: 1fr; }
+}
+
+
+/* En pantallas de hasta 900px (tablets y móviles grandes):
+   El layout cambia completamente — el sidebar ya no va a la izquierda,
+   sino que se pone arriba como una barra de navegación horizontal.
+   El body deja de ser de altura fija para que el contenido pueda
+   crecer hacia abajo sin problema. */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;   /* Sidebar arriba, contenido abajo */
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .sidebar {
+        width: 100%;              /* Ocupa todo el ancho */
+        height: auto;
+        padding: 18px 14px 16px;
+        border-bottom: 1px solid #1e293b;
+    }
+
+    .sidebar__logo { padding: 0 4px 16px; }
+
+    /* Los links del menú pasan de estar en columna vertical a estar
+       en fila horizontal (como tabs), con scroll lateral si son muchos. */
+    .sidebar__nav {
+        flex: unset;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .sidebar__nav ul {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 8px;
+        min-width: max-content;
+        padding-bottom: 4px;
+    }
+
+    .sidebar__nav a {
+        white-space: nowrap;      /* El texto no parte en dos líneas */
+        padding: 10px 14px;
+        font-size: .8rem;
+    }
+
+    .sidebar__user { margin-top: 14px; padding-top: 14px; }
+
+    /* El main ya no necesita overflow: hidden porque el body controla el scroll. */
+    .main { overflow: visible; min-height: auto; }
+
+    /* El topbar se vuelve flexible en altura por si el contenido se parte en dos líneas. */
+    .topbar {
+        padding: 16px 20px;
+        height: auto;
+        min-height: 68px;
+        gap: 12px;
+        flex-wrap: wrap;          /* Si no cabe en una fila, pasa a la siguiente */
+    }
+
+    .topbar__left h2 { font-size: 1.15rem; }
+    .topbar__left p  { font-size: .75rem; }
+
+    /* El content también usa overflow: visible para que el scroll
+       sea del body completo y no de un div interno. */
+    .content {
+        padding: 20px 18px 28px;
+        gap: 20px;
+        overflow: visible;
+    }
+
+    /* En móvil, los grids siempre son de una sola columna, sí o sí. */
+    .reportes-kpi-grid,
+    .reportes-acc-item__cards    { grid-template-columns: 1fr !important; }
+
+    .reportes-kpi-card,
+    .reportes-chart-card,
+    .reportes-details            { padding: 18px; }
+
+    /* La tarjeta KPI pasa de estar en fila (texto + ícono lado a lado)
+       a estar en columna (ícono abajo del texto). */
+    .reportes-kpi-card {
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-start;
+    }
+
+    .reportes-kpi-card__amount   { font-size: 1.35rem; }
+    .reportes-chart-card         { min-height: auto; }
+    #barChart                    { height: 260px !important; }
+
+    .reportes-acc-item__header   { align-items: flex-start; gap: 10px; }
+    .reportes-acc-item__header-left { flex: 1; min-width: 0; }
+    .reportes-mini-card          { padding: 16px; }
+}
+
+
+/* En pantallas de hasta 600px (móviles normales):
+   Se reduce aún más el tamaño de fuentes, paddings e íconos
+   para que todo quepa cómodamente en una pantalla chica. */
+@media (max-width: 600px) {
+    .sidebar            { padding: 16px 10px 14px; }
+    .sidebar__nav a     { padding: 9px 12px; font-size: .78rem; }
+
+    /* Los avatares se hacen un poco más chicos para ahorrar espacio. */
+    .sidebar__avatar,
+    .topbar__avatar     { width: 32px; height: 32px; font-size: .74rem; }
+
+    .topbar             { padding: 14px 16px; }
+    .topbar__right span { font-size: .8rem; }
+    .content            { padding: 16px 14px 24px; }
+
+    /* Menos padding en todas las tarjetas para aprovechar el espacio. */
+    .reportes-kpi-card,
+    .reportes-chart-card,
+    .reportes-details,
+    .reportes-mini-card { padding: 16px; }
+
+    /* Textos de etiquetas un poco más pequeños. */
+    .reportes-kpi-card__label,
+    .reportes-mini-card__label  { font-size: .66rem; }
+
+    /* Números un poco más pequeños para que quepan bien. */
+    .reportes-kpi-card__amount,
+    .reportes-mini-card__amount { font-size: 1.15rem; }
+
+    /* Textos secundarios más chicos también. */
+    .reportes-kpi-card__change,
+    .reportes-mini-card__change,
+    .reportes-details__subtitle,
+    .reportes-acc-item__balance,
+    .reportes-chart-card__subtitle { font-size: .72rem; }
+
+    /* Títulos de secciones ajustados para pantallas pequeñas. */
+    .reportes-chart-card__title,
+    .reportes-details__title,
+    .reportes-acc-item__month   { font-size: .88rem; }
+
+    /* Íconos circulares más pequeños en móvil. */
+    .reportes-kpi-card__icon,
+    .reportes-acc-item__icon    { width: 32px; height: 32px; }
+
+    .reportes-kpi-card__icon svg,
+    .reportes-acc-item__icon svg { width: 15px; height: 15px; }
+
+    /* La gráfica se encoge a 220px en móvil para no acaparar toda la pantalla. */
+    #barChart { height: 220px !important; }
+}
