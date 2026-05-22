@@ -89,8 +89,10 @@ https://www.figma.com/design/sd05vEaKrdwzWAf4YQfHeh/MockUp-Design?node-id=12-101
 
 🗄️ 6. Diseño de Base de Datos
 
-Agregar imagen del modelo.
-Tablas principales
+Base de datos trabajada desde supabase
+<img width="242" height="306" alt="image" src="https://github.com/user-attachments/assets/3335cb5e-63f1-4164-bce4-1323aad08c3a" />
+<img width="1058" height="95" alt="image" src="https://github.com/user-attachments/assets/0e6b0ad7-fdff-4b5a-bd9b-936a2623ce9f" />
+
 
 🧩 7. Documentación del Sistema
 
