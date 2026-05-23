@@ -6,7 +6,7 @@
 <title>Iniciar Sesión</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/Style_Iniciar.css">
+<link rel="stylesheet" href="css/Iniciar_style.css">
 
 </head>
 
@@ -52,38 +52,9 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/iniciar.js"></script>
 
-<script>
-function iniciarSesion() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value.trim();
-
-  if (!email || !password) {
-    alert('Por favor completa correo y contraseña.');
-    return;
-  }
-
-  if (password.length < 6) {
-    alert('La contraseña debe tener al menos 6 caracteres.');
-    return;
-  }
-
-  window.location.href = 'Dashboard.html';
-}
-
-
-function togglePassword() {
-  const input = document.getElementById('loginPassword');
-  const eye = document.querySelector('.icon-eye');
-
-  if (input.type === "password") {
-    input.type = "text";
-    eye.style.opacity = "0.5"; // opcional: efecto visual
-  } else {
-    input.type = "password";
-    eye.style.opacity = "1";
-  }
-}
-</script>
 </body>
 </html>
