@@ -706,6 +706,125 @@ img, svg, canvas {
     }
 
     .reportes-mini-card { padding: 16px; }
+
+    .reportes-details {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.reportes-details__title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.reportes-details__subtitle {
+    font-size: .82rem;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.reportes-acc-item {
+    border: 1px solid #dbe3ef;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.reportes-acc-item__header {
+    padding: 18px 22px;
+    cursor: pointer;
+}
+
+.reportes-acc-item__header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.reportes-acc-item__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #dbeafe;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.reportes-acc-item__header-left h4,
+.reportes-acc-item__header-left .reportes-acc-item__month {
+    font-size: .95rem;
+    font-weight: 800;
+    color: #0f172a;
+    text-transform: lowercase;
+}
+
+.reportes-acc-item__balance {
+    font-size: .8rem;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.reportes-acc-item__body {
+    display: none;
+    padding: 0 22px 20px;
+}
+
+.reportes-acc-item.open .reportes-acc-item__body {
+    display: block;
+}
+
+.reportes-acc-item__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.reportes-mini-card {
+    border-radius: 10px;
+    padding: 20px 22px;
+    min-height: 82px;
+    border: 1px solid transparent;
+}
+
+.reportes-mini-card .reportes-mini-card__label {
+    display: block;
+    text-transform: uppercase;
+    font-size: .75rem;
+    letter-spacing: .05em;
+    color: #64748b;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.reportes-mini-card .reportes-mini-card__amount {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.reportes-mini-card.reportes-mini-card--income {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.reportes-mini-card.reportes-mini-card--expense {
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.reportes-mini-card.reportes-mini-card--balance {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
 }
 
 /* Pantallas menores a 600px: reducimos fuentes y padding
@@ -778,4 +897,6 @@ img, svg, canvas {
 
     /* Gráfica más baja en móvil pequeño */
     #barChart { height: 220px !important; }
+
+    
 }
