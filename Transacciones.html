@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="css/TransaccionesEstilos.css">
+    <link rel="stylesheet" href="css/Transacciones_style.css">
 </head>
 
 
@@ -109,9 +109,9 @@
             <div class="sidebar__avatar">LA</div>
             <div class="sidebar__user-info">
               
-                <strong>Laura Vargas</strong>
+                <strong></strong>
                 
-                <span>laura@email.com</span>
+                <span></span>
             </div>
         </div>
 
@@ -138,7 +138,7 @@
             </div>
             <div class="topbar__right">
                 
-                <span>Hola Laura!</span>
+                <span>Hola!</span>
                 <div class="topbar__avatar">LV</div>
             </div>
         </header>
@@ -175,9 +175,9 @@
                        
                         <select class="filters__select" id="filterMes" onchange="filterTransactions()">
                             <option value="">Todos los meses</option>
+                            <option value="mayo">Mayo 2026</option>
+                            <option value="abril">Abril 2026</option>
                             <option value="marzo">Marzo 2026</option>
-                            <option value="febrero">Febrero 2026</option>
-                            <option value="enero">Enero 2026</option>
                         </select>
                     </div>
 
@@ -217,13 +217,13 @@
             <section class="months-list" id="monthsContainer">
 
 
-                <!-- MARZO 2026 -->
-                <div class="month-block open" data-mes="marzo">
+                <!-- MAYO 2026 -->
+                <div class="month-block open" data-mes="mayo">
 
      
                     <div class="month-block__header" onclick="toggleMonth(this)">
 
-                        <span class="month-block__name">MARZO 2026</span>
+                        <span class="month-block__name">MAYO 2026</span>
 
                         <div class="month-block__chevron">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -254,129 +254,7 @@
              
                             <tbody>
 
-                                <!-- Cada <tr> una transacción-->
-
-                                <!-- Gasto Alimentación -->
-                                <tr data-tipo="gasto" data-cat="Alimentación">
-                           
-                                    <td class="td--date">12/03/26</td>
-                                    <td>
-                                
-                                        <span class="badge badge--gasto">Gasto</span>
-                                    </td>
-                                    <td class="td--cat">Alimentación</td>
-                                    <td class="td--amount td--amount--gasto">$150.000</td>
-                                    <td class="td--desc">Supermarket place</td>
-                                    <td class="td--actions">
-                                        <!-- Botón lápiz: abre modal Editar -->
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)">
-                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                            </svg>
-                                        </button>
-                                        <!-- Botón basura: abre modal Eliminar -->
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)">
-                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                            </svg>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <!--  Gasto Transporte -->
-                                <tr data-tipo="gasto" data-cat="Transporte">
-                                    <td class="td--date">12/03/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Transporte</td>
-                                    <td class="td--amount td--amount--gasto">$250.000</td>
-                                    <td class="td--desc">TransMilenio</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <!-- Gasto Entretenimiento -->
-                                <tr data-tipo="gasto" data-cat="Entretenimiento">
-                                    <td class="td--date">17/03/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Entretenimiento</td>
-                                    <td class="td--amount td--amount--gasto">$80.000</td>
-                                    <td class="td--desc">Netflix Sub</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <!-- Gasto Salud -->
-                                <tr data-tipo="gasto" data-cat="Salud">
-                                    <td class="td--date">18/03/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Salud</td>
-                                    <td class="td--amount td--amount--gasto">$230.000</td>
-                                    <td class="td--desc">Cordales</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <!-- gasto Hogar — Arriendo -->
-                                <tr data-tipo="gasto" data-cat="Hogar">
-                                    <td class="td--date">18/03/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Hogar</td>
-                                    <td class="td--amount td--amount--gasto">$1.500.000</td>
-                                    <td class="td--desc">Arriendo</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <!-- Gasto Hogar — Servicios -->
-                                <tr data-tipo="gasto" data-cat="Hogar">
-                                    <td class="td--date">18/03/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Hogar</td>
-                                    <td class="td--amount td--amount--gasto">$200.000</td>
-                                    <td class="td--desc">Servicios</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <!--  Gasto Hogar — Internet -->
-                                <tr data-tipo="gasto" data-cat="Hogar">
-                                    <td class="td--date">18/03/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Hogar</td>
-                                    <td class="td--amount td--amount--gasto">$80.000</td>
-                                    <td class="td--desc">Internet</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <!-- Ingreso — Salario (badge verde, monto verde) -->
-                                <tr data-tipo="ingreso" data-cat="Salario">
-                                    <td class="td--date">01/03/26</td>
-                                    <td>
-                     
-                                        <span class="badge badge--ingreso">Ingreso</span>
-                                    </td>
-                                    <td class="td--cat">Salario</td>
-                        
-                                    <td class="td--amount td--amount--ingreso">$4.500.000</td>
-                                    <td class="td--desc">Salario Mensual</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
+                             
 
                             </tbody>
                         </table>
@@ -389,12 +267,11 @@
    
 
 
-                <!--FEBRERO 2026  -->
-                <div class="month-block" data-mes="febrero">
+                <!--ABRIL 2026  -->
+                <div class="month-block" data-mes="abril">
 
                     <div class="month-block__header" onclick="toggleMonth(this)">
-                        <span class="month-block__name">FEBRERO 2026</span>
-                        <div class="month-block__chevron">
+                        <span class="month-block__name">ABRIL 2026</span>                        <div class="month-block__chevron">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
@@ -412,77 +289,7 @@
                             </thead>
                             <tbody>
 
-                                <tr data-tipo="gasto" data-cat="Alimentación">
-                                    <td class="td--date">28/02/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Alimentación</td>
-                                    <td class="td--amount td--amount--gasto">$320.000</td>
-                                    <td class="td--desc">Supermercado Carrefour</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <tr data-tipo="ingreso" data-cat="Extra">
-                                    <td class="td--date">25/02/26</td>
-                                    <td><span class="badge badge--ingreso">Ingreso</span></td>
-                                    <td class="td--cat">Extra</td>
-                                    <td class="td--amount td--amount--ingreso">$1.500.000</td>
-                                    <td class="td--desc">Proyecto Freelance</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <tr data-tipo="gasto" data-cat="Transporte">
-                                    <td class="td--date">24/02/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Transporte</td>
-                                    <td class="td--amount td--amount--gasto">$150.000</td>
-                                    <td class="td--desc">Gasolina Shell</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <tr data-tipo="gasto" data-cat="Entretenimiento">
-                                    <td class="td--date">22/02/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Entretenimiento</td>
-                                    <td class="td--amount td--amount--gasto">$15.000</td>
-                                    <td class="td--desc">Netflix Suscripción</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <tr data-tipo="gasto" data-cat="Servicios">
-                                    <td class="td--date">18/02/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Servicios</td>
-                                    <td class="td--amount td--amount--gasto">$180.000</td>
-                                    <td class="td--desc">Luz y Gas</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <tr data-tipo="ingreso" data-cat="Salario">
-                                    <td class="td--date">01/02/26</td>
-                                    <td><span class="badge badge--ingreso">Ingreso</span></td>
-                                    <td class="td--cat">Salario</td>
-                                    <td class="td--amount td--amount--ingreso">$4.500.000</td>
-                                    <td class="td--desc">Salario Mensual</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
+                               
 
                             </tbody>
                         </table>
@@ -492,12 +299,11 @@
      
 
 
-                <!--  ENERO 2026  -->
-                <div class="month-block" data-mes="enero">
+                <!--  MARZO 2026  -->
+                <div class="month-block" data-mes="marzo">
 
                     <div class="month-block__header" onclick="toggleMonth(this)">
-                        <span class="month-block__name">ENERO 2026</span>
-                        <div class="month-block__chevron">
+                        <span class="month-block__name">MARZO 2026</span>                        <div class="month-block__chevron">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
@@ -514,42 +320,7 @@
                             </thead>
                             <tbody>
 
-                                <tr data-tipo="ingreso" data-cat="Salario">
-                                    <td class="td--date">01/01/26</td>
-                                    <td><span class="badge badge--ingreso">Ingreso</span></td>
-                                    <td class="td--cat">Salario</td>
-                                    <td class="td--amount td--amount--ingreso">$4.500.000</td>
-                                    <td class="td--desc">Salario Mensual</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <tr data-tipo="gasto" data-cat="Hogar">
-                                    <td class="td--date">05/01/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Hogar</td>
-                                    <td class="td--amount td--amount--gasto">$1.500.000</td>
-                                    <td class="td--desc">Arriendo</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
-                                <tr data-tipo="gasto" data-cat="Alimentación">
-                                    <td class="td--date">10/01/26</td>
-                                    <td><span class="badge badge--gasto">Gasto</span></td>
-                                    <td class="td--cat">Alimentación</td>
-                                    <td class="td--amount td--amount--gasto">$290.000</td>
-                                    <td class="td--desc">Mercado semanal</td>
-                                    <td class="td--actions">
-                                        <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></button>
-                                        <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
-                                    </td>
-                                </tr>
-
+                               
                             </tbody>
                         </table>
                     </div>
@@ -771,70 +542,99 @@
     </div>
 
 
-    <!--JAVASCRIPT — Toda la interactividad de la página -->
-    <script>
 
-        /* FECHA DINÁMICA*/
+    <!-- SUPABASE + SESIÓN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/sesion.js"></script>
+
+    <!-- JAVASCRIPT — Transacciones conectadas a Supabase -->
+    <script>
+        /* FECHA DINÁMICA */
         const dias  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
         const meses = ['enero','febrero','marzo','abril','mayo','junio',
                        'julio','agosto','septiembre','octubre','noviembre','diciembre'];
-        const hoy   = new Date();
+        const hoy = new Date();
+
         document.getElementById('today-date').textContent =
             `${dias[hoy.getDay()]}, ${hoy.getDate()} de ${meses[hoy.getMonth()]} de ${hoy.getFullYear()}`;
 
+        const mesesData = {
+            "03": "marzo",
+            "04": "abril",
+            "05": "mayo"
+        };
 
-        /* ACORDEÓN DE MESES*/
+        /* ACORDEÓN DE MESES */
         function toggleMonth(header) {
             header.closest('.month-block').classList.toggle('open');
         }
 
-
-        /*FILTROS */
+        /* FILTROS */
         function filterTransactions() {
             const filtroMes  = document.getElementById('filterMes').value;
             const filtroTipo = document.getElementById('filterTipo').value;
             const filtroCat  = document.getElementById('filterCat').value;
 
             document.querySelectorAll('.month-block').forEach(bloque => {
-
-                /* Si hay filtro de mes y este bloque no es ese mes → ocultar */
                 if (filtroMes && bloque.dataset.mes !== filtroMes) {
                     bloque.style.display = 'none';
                     return;
                 }
+
                 bloque.style.display = '';
 
                 let visibles = 0;
+
                 bloque.querySelectorAll('tbody tr').forEach(fila => {
-                    /* Verificar si la fila pasa ambos filtros */
-                    const ok = (!filtroTipo || fila.dataset.tipo === filtroTipo) &&
-                               (!filtroCat  || fila.dataset.cat  === filtroCat);
+                    const ok =
+                        (!filtroTipo || fila.dataset.tipo === filtroTipo) &&
+                        (!filtroCat  || fila.dataset.cat  === filtroCat);
+
                     fila.style.display = ok ? '' : 'none';
+
                     if (ok) visibles++;
                 });
 
-                /* Si ninguna fila visible → ocultar el bloque completo */
-                if (visibles === 0) bloque.style.display = 'none';
+                if (visibles === 0 && (filtroTipo || filtroCat)) {
+                    bloque.style.display = 'none';
+                }
             });
         }
 
-
         /* MODAL AÑADIR */
-        function openModal()  { document.getElementById('modalOverlay').classList.add('active'); }
-        function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        /* Construye el HTML de una fila con sus botones animados */
-        function buildRow(tipo, cat, fecha, monto, desc) {
+        /* CONSTRUIR FILA */
+        function buildRow(tipo, cat, fecha, monto, desc, id = "") {
             return `
-                <tr data-tipo="${tipo}" data-cat="${cat}">
+                <tr data-id="${id}" data-tipo="${tipo}" data-cat="${cat}">
                     <td class="td--date">${fecha}</td>
-                    <td><span class="badge badge--${tipo}">${tipo === 'gasto' ? 'Gasto' : 'Ingreso'}</span></td>
+
+                    <td>
+                        <span class="badge badge--${tipo}">
+                            ${tipo === 'gasto' ? 'Gasto' : 'Ingreso'}
+                        </span>
+                    </td>
+
                     <td class="td--cat">${cat}</td>
-                    <td class="td--amount td--amount--${tipo}">${monto}</td>
+
+                    <td class="td--amount td--amount--${tipo}">
+                        ${monto}
+                    </td>
+
                     <td class="td--desc">${desc}</td>
+
                     <td class="td--actions">
                         <button class="action-btn btn-edit" title="Editar" onclick="openEditModal(this)">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -843,6 +643,7 @@
                                        m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                             </svg>
                         </button>
+
                         <button class="action-btn btn-delete" title="Eliminar" onclick="openDeleteModal(this)">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -854,58 +655,201 @@
                 </tr>`;
         }
 
-        function saveTransaction() {
-            const fecha = document.getElementById('newFecha').value;
-            const tipo  = document.getElementById('newTipo').value;
-            const cat   = document.getElementById('newCat').value;
-            const monto = document.getElementById('newMonto').value;
-            const desc  = document.getElementById('newDesc').value;
+        /* OBTENER ID DEL USUARIO LOGUEADO */
+        async function obtenerUsuarioId() {
+            const usuarioGuardado = JSON.parse(localStorage.getItem("usuarioLogueado"));
 
-            if (!fecha || !monto || !desc) {
-                alert('Completa todos los campos obligatorios.');
+            if (!usuarioGuardado) {
+                alert("No hay usuario logueado.");
+                window.location.href = "Iniciar.html";
+                return null;
+            }
+
+            const correoUsuario = usuarioGuardado.correo || usuarioGuardado.email;
+
+            const { data: usuarioData, error: usuarioError } = await supabaseClient
+                .from("USUARIOS")
+                .select("id")
+                .ilike("correo", correoUsuario)
+                .limit(1)
+                .single();
+
+            if (usuarioError) {
+                console.error("ERROR USUARIO:", usuarioError);
+                alert("No se encontró el usuario en la tabla USUARIOS.");
+                return null;
+            }
+
+            return usuarioData.id;
+        }
+
+        /* GUARDAR TRANSACCIÓN */
+        async function saveTransaction() {
+            const fecha = document.getElementById("newFecha").value;
+            const tipo  = document.getElementById("newTipo").value;
+            const cat   = document.getElementById("newCat").value;
+            const monto = document.getElementById("newMonto").value;
+            const desc  = document.getElementById("newDesc").value.trim();
+
+            if (!fecha || !tipo || !cat || !monto || !desc) {
+                alert("Completa todos los campos.");
                 return;
             }
 
-            const p = fecha.split('-');
+            const usuarioId = await obtenerUsuarioId();
+
+            if (!usuarioId) return;
+
+            const { data, error } = await supabaseClient
+                .from("TRANSACCIONES")
+                .insert([
+                    {
+                        Tipo: tipo,
+                        "Categoría": cat,
+                        Monto: Number(monto),
+                        Descripcion: desc,
+                        Fecha: fecha,
+                        usuario_id: usuarioId
+                    }
+                ])
+                .select();
+
+            if (error) {
+                console.error("ERROR INSERT TRANSACCION:", error);
+                alert("Error guardando transacción: " + error.message);
+                return;
+            }
+
+            const p = fecha.split("-");
             const fechaFmt = `${p[2]}/${p[1]}/${p[0].slice(2)}`;
-            const montoFmt = `$${Number(monto).toLocaleString('es-CO')}`;
+            const montoFmt = `$${Number(monto).toLocaleString("es-CO")}`;
+            const mesDestino = mesesData[p[1]];
 
-            document.querySelector(".month-block[data-mes='marzo'] tbody")
-                    .insertAdjacentHTML('afterbegin', buildRow(tipo, cat, fechaFmt, montoFmt, desc));
-            document.querySelector(".month-block[data-mes='marzo']").classList.add('open');
+            if (!mesDestino) {
+                alert("Ese mes no existe en la tabla.");
+                return;
+            }
 
-            document.getElementById('newFecha').value = '';
-            document.getElementById('newMonto').value = '';
-            document.getElementById('newDesc').value  = '';
+            document
+                .querySelector(`.month-block[data-mes='${mesDestino}'] tbody`)
+                .insertAdjacentHTML(
+                    "afterbegin",
+                    buildRow(tipo, cat, fechaFmt, montoFmt, desc, data[0].id)
+                );
+
+            document
+                .querySelector(`.month-block[data-mes='${mesDestino}']`)
+                .classList.add("open");
+
+            document.getElementById("newFecha").value = "";
+            document.getElementById("newMonto").value = "";
+            document.getElementById("newDesc").value = "";
+
             closeModal();
+
+            alert("Transacción guardada correctamente.");
         }
 
+        /* CARGAR TRANSACCIONES DESDE SUPABASE */
+        async function cargarTransaccionesDesdeSupabase() {
+            const usuarioId = await obtenerUsuarioId();
 
-        /*MODAL EDITAR*/
+            if (!usuarioId) return;
+
+            const { data, error } = await supabaseClient
+                .from("TRANSACCIONES")
+                .select("*")
+                .eq("usuario_id", usuarioId)
+                .order("Fecha", { ascending: false });
+
+            if (error) {
+                console.error("Error cargando transacciones:", error);
+                return;
+            }
+
+            document.querySelectorAll(".month-block tbody").forEach(tbody => {
+                tbody.innerHTML = "";
+            });
+
+            data.forEach((t) => {
+                const fecha = t.Fecha;
+                const p = fecha.split("-");
+                const fechaFmt = `${p[2]}/${p[1]}/${p[0].slice(2)}`;
+                const montoFmt = `$${Number(t.Monto).toLocaleString("es-CO")}`;
+                const mesDestino = mesesData[p[1]];
+
+                if (!mesDestino) return;
+
+                document
+                    .querySelector(`.month-block[data-mes='${mesDestino}'] tbody`)
+                    .insertAdjacentHTML(
+                        "beforeend",
+                        buildRow(
+                            t.Tipo,
+                            t["Categoría"],
+                            fechaFmt,
+                            montoFmt,
+                            t.Descripcion,
+                            t.id
+                        )
+                    );
+            });
+        }
+
+        /* MODAL EDITAR */
         let filaEnEdicion = null;
 
         function setTipo(tipo) {
             document.getElementById('editTipo').value = tipo;
+
             document.getElementById('btnIngreso').className =
                 'toggle-btn' + (tipo === 'ingreso' ? ' active-ingreso' : '');
+
             document.getElementById('btnGasto').className =
                 'toggle-btn' + (tipo === 'gasto' ? ' active-gasto' : '');
         }
 
+        function convertirFechaVisualAInput(fechaVisual) {
+            const partes = fechaVisual.split("/");
+
+            if (partes.length !== 3) return "";
+
+            const dia = partes[0];
+            const mes = partes[1];
+            const anio = "20" + partes[2];
+
+            return `${anio}-${mes}-${dia}`;
+        }
+
+        function limpiarMontoVisual(montoVisual) {
+            return montoVisual.replace("$", "").replace(/\./g, "").replace(/,/g, "").trim();
+        }
+
         function openEditModal(btn) {
             const fila = btn.closest('tr');
+
             filaEnEdicion = fila;
+
             const tipo = fila.dataset.tipo;
             const cat  = fila.querySelector('.td--cat').textContent.trim();
             const desc = fila.querySelector('.td--desc').textContent.trim();
+            const monto = fila.querySelector('.td--amount').textContent.trim();
+            const fecha = fila.querySelector('.td--date').textContent.trim();
+
             setTipo(tipo);
+
             const sel = document.getElementById('editCat');
-            for (let o of sel.options) { o.selected = o.value === cat; }
-            document.getElementById('editDesc').value    = desc;
-            document.getElementById('editMonto').value   = '';
-            document.getElementById('editFecha').value   = '';
+
+            for (let o of sel.options) {
+                o.selected = o.value === cat;
+            }
+
+            document.getElementById('editDesc').value = desc;
+            document.getElementById('editMonto').value = limpiarMontoVisual(monto);
+            document.getElementById('editFecha').value = convertirFechaVisualAInput(fecha);
             document.getElementById('editMiembro').value = '';
             document.getElementById('editRecurrente').checked = false;
+
             document.getElementById('editOverlay').classList.add('active');
         }
 
@@ -913,46 +857,92 @@
             document.getElementById('editOverlay').classList.remove('active');
             filaEnEdicion = null;
         }
+
         document.getElementById('editOverlay').addEventListener('click', function(e) {
             if (e.target === this) closeEditModal();
         });
 
-        function updateTransaction() {
+        /* ACTUALIZAR EN SUPABASE */
+        async function updateTransaction() {
             if (!filaEnEdicion) return;
+
+            const id = filaEnEdicion.dataset.id;
+
+            if (!id) {
+                alert("No se encontró el ID de la transacción.");
+                return;
+            }
+
             const tipo  = document.getElementById('editTipo').value;
             const cat   = document.getElementById('editCat').value;
             const desc  = document.getElementById('editDesc').value.trim();
             const monto = document.getElementById('editMonto').value;
-            if (!desc) { alert('La descripción es obligatoria.'); return; }
+            const fecha = document.getElementById('editFecha').value;
 
-            filaEnEdicion.dataset.tipo = tipo;
-            filaEnEdicion.dataset.cat  = cat;
+            if (!fecha || !monto || !desc) {
+                alert("Completa fecha, monto y descripción.");
+                return;
+            }
 
-            const badge = filaEnEdicion.querySelector('.badge');
-            badge.className   = `badge badge--${tipo}`;
-            badge.textContent = tipo === 'gasto' ? 'Gasto' : 'Ingreso';
+            const { error } = await supabaseClient
+                .from("TRANSACCIONES")
+                .update({
+                    Tipo: tipo,
+                    "Categoría": cat,
+                    Monto: Number(monto),
+                    Descripcion: desc,
+                    Fecha: fecha
+                })
+                .eq("id", id);
 
-            filaEnEdicion.querySelector('.td--cat').textContent  = cat;
-            filaEnEdicion.querySelector('.td--desc').textContent = desc;
+            if (error) {
+                console.error("ERROR UPDATE:", error);
+                alert("Error actualizando transacción: " + error.message);
+                return;
+            }
 
-            const tdMonto = filaEnEdicion.querySelector('.td--amount');
-            tdMonto.className = `td--amount td--amount--${tipo}`;
-            if (monto) tdMonto.textContent = `$${Number(monto).toLocaleString('es-CO')}`;
+            const p = fecha.split("-");
+            const fechaFmt = `${p[2]}/${p[1]}/${p[0].slice(2)}`;
+            const montoFmt = `$${Number(monto).toLocaleString("es-CO")}`;
+            const mesDestino = mesesData[p[1]];
+
+            if (!mesDestino) {
+                alert("Ese mes no existe en la tabla.");
+                return;
+            }
+
+            filaEnEdicion.remove();
+
+            document
+                .querySelector(`.month-block[data-mes='${mesDestino}'] tbody`)
+                .insertAdjacentHTML(
+                    "afterbegin",
+                    buildRow(tipo, cat, fechaFmt, montoFmt, desc, id)
+                );
+
+            document
+                .querySelector(`.month-block[data-mes='${mesDestino}']`)
+                .classList.add("open");
 
             closeEditModal();
-        }
 
+            alert("Transacción actualizada correctamente.");
+        }
 
         /* MODAL ELIMINAR */
         let filaParaEliminar = null;
 
         function openDeleteModal(btn) {
             const fila = btn.closest('tr');
+
             filaParaEliminar = fila;
-            document.getElementById('deleteDesc').textContent  =
+
+            document.getElementById('deleteDesc').textContent =
                 fila.querySelector('.td--desc').textContent.trim();
+
             document.getElementById('deleteMonto').textContent =
                 fila.querySelector('.td--amount').textContent.trim();
+
             document.getElementById('deleteOverlay').classList.add('active');
         }
 
@@ -960,16 +950,43 @@
             document.getElementById('deleteOverlay').classList.remove('active');
             filaParaEliminar = null;
         }
+
         document.getElementById('deleteOverlay').addEventListener('click', function(e) {
             if (e.target === this) closeDeleteModal();
         });
 
-        function confirmDelete() {
-            if (filaParaEliminar) filaParaEliminar.remove();
+        /* ELIMINAR EN SUPABASE */
+        async function confirmDelete() {
+            if (!filaParaEliminar) return;
+
+            const id = filaParaEliminar.dataset.id;
+
+            if (!id) {
+                alert("No se encontró el ID de la transacción.");
+                return;
+            }
+
+            const { error } = await supabaseClient
+                .from("TRANSACCIONES")
+                .delete()
+                .eq("id", id);
+
+            if (error) {
+                console.error("ERROR DELETE:", error);
+                alert("Error eliminando transacción: " + error.message);
+                return;
+            }
+
+            filaParaEliminar.remove();
+
             closeDeleteModal();
+
+            alert("Transacción eliminada correctamente.");
         }
 
+        document.addEventListener("DOMContentLoaded", cargarTransaccionesDesdeSupabase);
     </script>
+
 
 </body>
 </html>
