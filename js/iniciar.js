@@ -1,7 +1,6 @@
-// Mostrar/ocultar contraseña
 function togglePassword() {
-  const input = document.getElementById('loginPassword');
-  const eye = document.querySelector('.icon-eye');
+  const input = document.getElementById("loginPassword");
+  const eye = document.querySelector(".icon-eye");
 
   if (input.type === "password") {
     input.type = "text";
@@ -12,34 +11,33 @@ function togglePassword() {
   }
 }
 
+async function iniciarSesion() {
+  const correo = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
 
-// Iniciar sesión
-function iniciarSesion() {
-
-  const email = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value.trim();
-
-  // Validaciones
-  if (!email || !password) {
-    alert('Por favor completa correo y contraseña.');
+  if (!correo || !password) {
+    alert("Completa correo y contraseña.");
     return;
   }
 
-  if (password.length < 6) {
-    alert('La contraseña debe tener al menos 6 caracteres.');
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: correo,
+    password: password
+  });
+
+  if (error) {
+    alert(error.message);
     return;
   }
 
-  // Simulación de usuario (luego lo conectamos a Supabase 👀)
   const usuario = {
-    email: email
+    id: data.user.id,
+    nombre: data.user.user_metadata.nombre || "Usuario",
+    correo: data.user.email
   };
 
-  // Guardar sesión
-  localStorage.setItem("usuario", JSON.stringify(usuario));
+  localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
 
   alert("Inicio de sesión exitoso");
-
-  // Redirigir
-  window.location.href = 'Dashboard.html';
+  window.location.href = "Dashboard.html";
 }
