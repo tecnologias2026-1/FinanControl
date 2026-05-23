@@ -1,117 +1,62 @@
 <!DOCTYPE html>
 <!-- FINAN CONTROL WEB — Módulo de Grupos -->
 <html lang="es">
-
-<!-- HEAD — fuentes, estilos y metadatos -->
 <head>
-  <!-- Codificación: permite mostrar tildes y caracteres especiales -->
   <meta charset="UTF-8"/>
-
-  <!-- Vista adaptable: la página se ajusta a celular, tablet y escritorio -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- Título de la pestaña -->
   <title>FinanControl – Grupos</title>
-
-  <!-- Fuente tipográfica principal, igual al resto del sistema -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-
-  <!-- Hoja de estilos compartida -->
-  <link rel="stylesheet" href="css/estilos.css"/>
+  <link rel="stylesheet" href="css/Grupos_style.css"/>
 </head>
-
-<!-- BODY — todo el contenido visible -->
 <body>
 
-  <!-- ASIDE — Sidebar lateral -->
+  <!-- SIDEBAR -->
   <aside class="sidebar">
-
-    <!-- LOGO / IDENTIDAD -->
     <div class="sidebar-logo">
       <p class="brand">Finan<span>Control</span></p>
       <p class="tagline">Gestión Financiera</p>
     </div>
 
-    <!-- MENÚ DE NAVEGACIÓN -->
     <nav class="sidebar-nav" aria-label="Navegación principal">
       <ul>
-        <li>
-          <a href="Dashboard.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="7" height="7" rx="1"/>
-              <rect x="14" y="3" width="7" height="7" rx="1"/>
-              <rect x="3" y="14" width="7" height="7" rx="1"/>
-              <rect x="14" y="14" width="7" height="7" rx="1"/>
-            </svg>
-            Dashboard
-          </a>
-        </li>
-
-        <li>
-          <a href="Transacciones.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>
-            </svg>
-            Transacciones
-          </a>
-        </li>
-
-        <li>
-          <a href="Reportes.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0119 9.414V19a2 2 0 01-2 2z"/>
-            </svg>
-            Reportes
-          </a>
-        </li>
-
-        <li>
-          <a href="metas.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="9"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/>
-            </svg>
-            Metas
-          </a>
-        </li>
-
-        <li>
-          <a href="grupos.html" class="active">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-            </svg>
-            Grupos
-          </a>
-        </li>
-
-        <li>
-          <a href="perfil.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-            Perfil
-          </a>
-        </li>
+        <li><a href="Dashboard.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>Dashboard</a></li>
+        <li><a href="Transacciones.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>
+          </svg>Transacciones</a></li>
+        <li><a href="Reportes.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0119 9.414V19a2 2 0 01-2 2z"/>
+          </svg>Reportes</a></li>
+        <li><a href="metas.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/>
+          </svg>Metas</a></li>
+        <li><a href="grupos.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>Grupos</a></li>
+        <li><a href="perfil.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>Perfil</a></li>
       </ul>
     </nav>
 
-    <!-- BLOQUE INFERIOR DEL SIDEBAR -->
     <div class="sidebar-footer">
-
-      <!-- INFORMACIÓN DEL USUARIO -->
       <div class="user-card">
-        <div class="user-avatar">LV</div>
-        <div class="user-info">
-          <p class="name">Laura Vargas</p>
-          <p class="email">laura@gmail.com</p>
+        <div class="user-avatar sidebar__avatar" id="sidebarAvatar">US</div>
+        <div class="user-info sidebar__user-info">
+          <p class="name" id="nombreUsuario">Usuario</p>
+          <p class="email" id="correoUsuario">usuario@email.com</p>
         </div>
       </div>
-
-      <!-- BOTÓN CERRAR SESIÓN -->
-      <button class="sidebar__logout" type="button" onclick="window.location.href='index.html'">
+      <button class="sidebar__logout" type="button" onclick="cerrarSesion()">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
@@ -121,32 +66,31 @@
     </div>
   </aside>
 
-  <!-- MAIN — área principal -->
+  <!-- MAIN -->
   <main class="main">
 
-    <!-- TOPBAR — encabezado superior -->
+    <!-- TOPBAR -->
     <header class="topbar">
       <div class="topbar-left">
         <h1 class="page-title">Grupos</h1>
-        <p class="page-date">Domingo, 1 de enero de 2026</p>
+        <!-- ✅ FIX 1: fecha dinámica -->
+        <p class="page-date" id="today-date">Cargando fecha...</p>
       </div>
-
       <div class="topbar-right">
-        <span class="greeting">Hola Laura!</span>
-        <div class="topbar-avatar">LV</div>
+        <span class="greeting" id="saludoUsuario">Hola Usuario!</span>
+        <div class="topbar-avatar topbar__avatar" id="topbarAvatar">US</div>
       </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- CONTENIDO -->
     <div class="content">
 
-      <!-- CABECERA DE LA PÁGINA -->
+      <!-- CABECERA -->
       <div class="page-header">
         <div>
           <h2>Miembros del grupo familiar</h2>
           <p>Gestiona los miembros de tu grupo familiar y sus roles.</p>
         </div>
-
         <button class="btn-primary" onclick="openModal('modalCrear')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M12 5v14M5 12h14"/>
@@ -155,14 +99,13 @@
         </button>
       </div>
 
-      <!-- SECCIÓN — TABLA DE MIEMBROS DEL GRUPO -->
+      <!-- TABLA DE MIEMBROS -->
       <section class="section-card" aria-labelledby="tituloMiembros">
         <div class="section-card-header">
           <div class="section-card-header-left">
             <h2 class="section-label" id="tituloMiembros">Miembros del Grupo Familiar</h2>
-            <span class="group-name-tag">Familia Pérez</span>
+            <span class="group-name-tag" id="groupTag"></span>
           </div>
-
           <a class="invite-link" href="#" onclick="openModal('modalInvitar'); return false;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/>
@@ -172,205 +115,76 @@
             Invitar miembro
           </a>
         </div>
-
-        <!-- TABLA — listado de integrantes -->
         <table>
           <thead>
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Rol</th>
-              <th scope="col">Correo</th>
+              <th scope="col">Correo / Invitado</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
-
-          <tbody>
-            <tr>
-              <td>
-                <div class="member-name-cell">
-                  <div class="member-avatar av-blue">LA</div>
-                  <span class="member-name">Laura</span>
-                </div>
-              </td>
-              <td><span class="badge-admin">● Administrador</span></td>
-              <td>laura@email.com</td>
-              <td>
-                <div class="actions-cell">
-                  <button class="icon-btn edit" onclick="openModal('modalRol')" aria-label="Cambiar rol de Laura">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-
-                  <button class="icon-btn del" onclick="openModal('modalEliminar')" aria-label="Eliminar a Laura">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="3 6 5 6 21 6"/>
-                      <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
-                      <path d="M10 11v6M14 11v6"/>
-                      <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
-                    </svg>
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <div class="member-name-cell">
-                  <div class="member-avatar av-green">NI</div>
-                  <span class="member-name">Nicolás</span>
-                </div>
-              </td>
-              <td><span class="badge-member">Miembro</span></td>
-              <td>nicolas@email.com</td>
-              <td>
-                <div class="actions-cell">
-                  <button class="icon-btn edit" onclick="openModal('modalRol')" aria-label="Cambiar rol de Nicolás">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-
-                  <button class="icon-btn del" onclick="openModal('modalEliminar')" aria-label="Eliminar a Nicolás">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="3 6 5 6 21 6"/>
-                      <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
-                      <path d="M10 11v6M14 11v6"/>
-                      <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
-                    </svg>
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <div class="member-name-cell">
-                  <div class="member-avatar av-purple">PA</div>
-                  <span class="member-name">Paula</span>
-                </div>
-              </td>
-              <td><span class="badge-member">Miembro</span></td>
-              <td>paula@email.com</td>
-              <td>
-                <div class="actions-cell">
-                  <button class="icon-btn edit" onclick="openModal('modalRol')" aria-label="Cambiar rol de Paula">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-                      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                    </svg>
-                  </button>
-
-                  <button class="icon-btn del" onclick="openModal('modalEliminar')" aria-label="Eliminar a Paula">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="3 6 5 6 21 6"/>
-                      <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
-                      <path d="M10 11v6M14 11v6"/>
-                      <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
-                    </svg>
-                  </button>
-                </div>
-              </td>
-            </tr>
+          <tbody id="tablaBody">
+            <tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:24px">Cargando grupos...</td></tr>
           </tbody>
         </table>
       </section>
 
-      <!-- SECCIÓN — RESUMEN FINANCIERO DEL GRUPO -->
+      <!-- FINANZAS CONSOLIDADAS -->
       <section class="section-card" aria-labelledby="tituloFinanzas">
         <div class="finance-header">
           <h2 class="title" id="tituloFinanzas">Finanzas consolidadas del grupo familiar</h2>
-
-          <a class="detail-link detail-toggle" href="#" onclick="toggleMemberDetail(event)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-            Ver detalle
-          </a>
+          <div style="display:flex;gap:10px;align-items:center">
+            <!-- ✅ NUEVO: botón Añadir Gasto Familiar -->
+            <button class="btn-primary btn-gasto-familiar" onclick="openModal('modalGasto')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+              Añadir Gasto
+            </button>
+            <a class="detail-link detail-toggle" href="#" onclick="toggleMemberDetail(event)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              Ver detalle
+            </a>
+          </div>
         </div>
 
-        <!-- RESUMEN GENERAL — ingresos, gastos y balance -->
+        <!-- RESUMEN GENERAL -->
         <div class="finance-summary">
           <article class="finance-summary-item">
             <p class="fs-label">Ingresos Totales</p>
-            <p class="fs-amount" style="color:var(--color-green)">$ 10.000.000</p>
+            <p class="fs-amount" id="fs-ingresos" style="color:var(--color-green)">$ 0</p>
             <div class="fs-bar-bg">
-              <div class="fs-bar-fill green" style="width:80%"></div>
+              <div class="fs-bar-fill green" id="bar-ingresos" style="width:0%"></div>
             </div>
           </article>
-
           <article class="finance-summary-item">
             <p class="fs-label">Gastos Totales</p>
-            <p class="fs-amount" style="color:var(--color-red)">$ 7.000.000</p>
+            <p class="fs-amount" id="fs-gastos" style="color:var(--color-red)">$ 0</p>
             <div class="fs-bar-bg">
-              <div class="fs-bar-fill red" style="width:60%"></div>
+              <div class="fs-bar-fill red" id="bar-gastos" style="width:0%"></div>
             </div>
           </article>
-
           <article class="finance-summary-item dark">
             <p class="fs-label">Balance Global</p>
-            <p class="fs-amount">$ 3.000.000</p>
+            <p class="fs-amount" id="fs-balance">$ 0</p>
             <p class="dark-note">Disponible para ahorro</p>
           </article>
         </div>
 
-        <!-- DETALLE POR MIEMBRO — inicialmente oculto -->
-        <ul class="member-finance-grid member-finance-grid--hidden" id="memberFinanceGrid">
-          <li>
-            <article class="mf-card">
-              <div class="mf-header">
-                <div class="member-avatar av-blue" style="width:28px;height:28px;font-size:10px">LA</div>
-                <div>
-                  <p class="mf-name">Laura</p>
-                  <p class="mf-role">Administrador</p>
-                </div>
-              </div>
-              <div class="mf-row"><span class="mf-row-label">Ingresos</span><span class="mf-row-val pos">$ 4.800.000</span></div>
-              <div class="mf-row"><span class="mf-row-label">Gastos</span><span class="mf-row-val neg">$ 2.500.000</span></div>
-              <hr class="mf-divider"/>
-              <div class="mf-row"><span class="mf-balance">Neto</span><span class="mf-balance-val">$ 1.900.000</span></div>
-            </article>
-          </li>
-
-          <li>
-            <article class="mf-card">
-              <div class="mf-header">
-                <div class="member-avatar av-green" style="width:28px;height:28px;font-size:10px">NI</div>
-                <div>
-                  <p class="mf-name">Nicolás</p>
-                  <p class="mf-role">Miembro</p>
-                </div>
-              </div>
-              <div class="mf-row"><span class="mf-row-label">Ingresos</span><span class="mf-row-val pos">$ 3.200.000</span></div>
-              <div class="mf-row"><span class="mf-row-label">Gastos</span><span class="mf-row-val neg">$ 2.000.000</span></div>
-              <hr class="mf-divider"/>
-              <div class="mf-row"><span class="mf-balance">Neto</span><span class="mf-balance-val">$ 1.500.000</span></div>
-            </article>
-          </li>
-
-          <li>
-            <article class="mf-card">
-              <div class="mf-header">
-                <div class="member-avatar av-purple" style="width:28px;height:28px;font-size:10px">PA</div>
-                <div>
-                  <p class="mf-name">Paula</p>
-                  <p class="mf-role">Miembro</p>
-                </div>
-              </div>
-              <div class="mf-row"><span class="mf-row-label">Ingresos</span><span class="mf-row-val pos">$ 3.000.000</span></div>
-              <div class="mf-row"><span class="mf-row-label">Gastos</span><span class="mf-row-val neg">$ 2.500.000</span></div>
-              <hr class="mf-divider"/>
-              <div class="mf-row"><span class="mf-balance">Neto</span><span class="mf-balance-val">$ 500.000</span></div>
-            </article>
-          </li>
-        </ul>
+        <!-- ✅ FIX 2: cambiado de <ul>/<li> a <div> para eliminar viñetas -->
+        <div class="member-finance-grid member-finance-grid--hidden" id="memberFinanceGrid">
+          <!-- Poblado dinámicamente por JS -->
+        </div>
       </section>
 
     </div>
   </main>
+
+  <!-- ===== MODALES ===== -->
 
   <!-- MODAL CREAR GRUPO -->
   <div class="modal-overlay" id="modalCrear" role="dialog" aria-modal="true" aria-labelledby="tituloModalCrear">
@@ -379,22 +193,18 @@
         <h2 class="modal-title" id="tituloModalCrear">Crear Nuevo Grupo</h2>
         <button class="modal-close" onclick="closeModal('modalCrear')" aria-label="Cerrar">×</button>
       </div>
-
       <div class="form-group">
         <label class="form-label" for="g-nombre">Nombre del Grupo *</label>
         <input class="form-input" id="g-nombre" type="text" placeholder="Ej: Familia Pérez"/>
       </div>
-
       <div class="form-group">
         <label class="form-label" for="g-desc">Descripción (Opcional)</label>
         <input class="form-input" id="g-desc" type="text" placeholder="Propósito del grupo..."/>
       </div>
-
       <div class="form-group">
         <label class="form-label" for="g-email">Invitar miembros (emails)</label>
         <input class="form-input" id="g-email" type="email" placeholder="correo@ejemplo.com"/>
       </div>
-
       <div class="form-group">
         <label class="form-label">Rol al unirse</label>
         <div class="role-options">
@@ -404,7 +214,6 @@
             <p class="ro-name">Miembro</p>
             <p class="ro-desc">Solo puede ver y agregar datos</p>
           </label>
-
           <label class="role-option" onclick="selectRole(this)">
             <input type="radio" name="rol-crear" value="admin"/>
             <div class="ro-dot"></div>
@@ -413,9 +222,8 @@
           </label>
         </div>
       </div>
-
       <div class="modal-footer">
-        <button class="btn-modal-primary" onclick="closeModal('modalCrear')">
+        <button class="btn-modal-primary" id="btnCrearGrupo">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M12 5v14M5 12h14"/>
           </svg>
@@ -433,7 +241,6 @@
         <h2 class="modal-title" id="tituloRol">Cambiar Rol</h2>
         <button class="modal-close" onclick="closeModal('modalRol')" aria-label="Cerrar">×</button>
       </div>
-
       <div class="form-group">
         <label class="form-label">Selecciona el nuevo rol</label>
         <div class="role-options">
@@ -443,7 +250,6 @@
             <p class="ro-name">Administrador</p>
             <p class="ro-desc">Puede gestionar usuarios y notas</p>
           </label>
-
           <label class="role-option" onclick="selectRole(this)">
             <input type="radio" name="rol-cambiar" value="miembro"/>
             <div class="ro-dot"></div>
@@ -452,15 +258,14 @@
           </label>
         </div>
       </div>
-
       <div class="modal-footer">
-        <button class="btn-modal-primary" onclick="closeModal('modalRol')">Guardar Cambio</button>
+        <button class="btn-modal-primary" id="btnGuardarRol">Guardar Cambio</button>
         <button class="btn-secondary" onclick="closeModal('modalRol')">Cancelar</button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL ELIMINAR MIEMBRO -->
+  <!-- MODAL ELIMINAR GRUPO -->
   <div class="modal-overlay" id="modalEliminar" role="dialog" aria-modal="true" aria-labelledby="tituloEliminar">
     <div class="modal modal-sm confirm-modal">
       <div class="danger-icon" aria-hidden="true">
@@ -471,12 +276,10 @@
           <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
         </svg>
       </div>
-
-      <h2 class="modal-title" id="tituloEliminar">¿Eliminar miembro?</h2>
-      <p>¿Estás seguro de que deseas eliminar a este miembro? Sus transacciones históricas se mantendrán.</p>
-
+      <h2 class="modal-title" id="tituloEliminar">¿Eliminar grupo?</h2>
+      <p style="font-size:.84rem;color:var(--text-muted);margin-top:8px">Sus registros de gastos también serán eliminados.</p>
       <div class="modal-footer" style="margin-top:24px">
-        <button class="btn-modal-danger" onclick="closeModal('modalEliminar')">Eliminar</button>
+        <button class="btn-modal-danger" id="btnEliminarGrupo">Eliminar</button>
         <button class="btn-secondary" onclick="closeModal('modalEliminar')">Cancelar</button>
       </div>
     </div>
@@ -489,12 +292,10 @@
         <h2 class="modal-title" id="tituloInvitar">Invitar Miembro</h2>
         <button class="modal-close" onclick="closeModal('modalInvitar')" aria-label="Cerrar">×</button>
       </div>
-
       <div class="form-group">
         <label class="form-label" for="inv-email">Correo Electrónico</label>
         <input class="form-input" id="inv-email" type="email" placeholder="correo@ejemplo.com"/>
       </div>
-
       <div class="form-group">
         <label class="form-label">Rol Inicial</label>
         <div class="role-options">
@@ -504,7 +305,6 @@
             <p class="ro-name">Miembro</p>
             <p class="ro-desc">Solo puede ver y agregar datos</p>
           </label>
-
           <label class="role-option" onclick="selectRole(this)">
             <input type="radio" name="rol-invitar" value="admin"/>
             <div class="ro-dot"></div>
@@ -513,7 +313,6 @@
           </label>
         </div>
       </div>
-
       <div class="modal-footer">
         <button class="btn-modal-primary" onclick="closeModal('modalInvitar')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -526,55 +325,104 @@
     </div>
   </div>
 
+  <!-- ✅ NUEVO — MODAL AÑADIR GASTO FAMILIAR -->
+  <div class="modal-overlay" id="modalGasto" role="dialog" aria-modal="true" aria-labelledby="tituloModalGasto">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="tituloModalGasto">Añadir Gasto Familiar</h2>
+        <button class="modal-close" onclick="closeModal('modalGasto')" aria-label="Cerrar">×</button>
+      </div>
+
+      <!-- Tipo: Gasto o Ingreso -->
+      <div class="form-group">
+        <label class="form-label">Tipo de movimiento</label>
+        <div class="role-options" style="grid-template-columns:1fr 1fr">
+          <label class="role-option selected" onclick="selectRole(this)">
+            <input type="radio" name="gasto-tipo" value="gasto" checked/>
+            <div class="ro-dot"></div>
+            <p class="ro-name" style="color:#ef4444">Gasto</p>
+            <p class="ro-desc">Salida de dinero del grupo</p>
+          </label>
+          <label class="role-option" onclick="selectRole(this)">
+            <input type="radio" name="gasto-tipo" value="ingreso"/>
+            <div class="ro-dot"></div>
+            <p class="ro-name" style="color:#22c55e">Ingreso / Abono</p>
+            <p class="ro-desc">Entrada de dinero al grupo</p>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="gasto-desc">Descripción *</label>
+        <input class="form-input" id="gasto-desc" type="text" placeholder="Ej: Mercado semanal, Arriendo..."/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="gasto-monto">Monto *</label>
+        <input class="form-input" id="gasto-monto" type="number" min="0" placeholder="Ej: 150000"/>
+      </div>
+
+      <!-- ¿Quién lo hizo? — datalist para sugerencias -->
+      <div class="form-group">
+        <label class="form-label" for="gasto-miembro">¿Quién lo realizó? *</label>
+        <input class="form-input" id="gasto-miembro" type="text"
+               list="listaMiembros" placeholder="Nombre del integrante" autocomplete="off"/>
+        <datalist id="listaMiembros"></datalist>
+      </div>
+
+      <!-- Selector de grupo (si el usuario tiene más de uno) -->
+      <div class="form-group" id="selectorGrupoWrap">
+        <label class="form-label" for="gasto-grupo">Grupo familiar</label>
+        <select class="form-input" id="gasto-grupo"></select>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-primary" id="btnRegistrarGasto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Registrar
+        </button>
+        <button class="btn-secondary" onclick="closeModal('modalGasto')">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    /* MODALES — abrir */
-    function openModal(id)  {
-      document.getElementById(id).classList.add('open');
-    }
+    /* ── MODALES ── */
+    function openModal(id)  { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-    /* MODALES — cerrar */
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('open');
-    }
-
-    /* CIERRE DE MODALES — clic por fuera */
     document.querySelectorAll('.modal-overlay').forEach(o => {
-      o.addEventListener('click', e => {
-        if (e.target === o) o.classList.remove('open');
-      });
+      o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
     });
 
-    /* ROLES — selecciona visualmente la opción elegida */
+    /* ── ROLES ── */
     function selectRole(el) {
       el.closest('.role-options').querySelectorAll('.role-option').forEach(r => r.classList.remove('selected'));
       el.classList.add('selected');
     }
 
-    /* DETALLE FINANCIERO — muestra u oculta el desglose por miembro */
+    /* ── TOGGLE DETALLE ── */
     function toggleMemberDetail(event) {
       event.preventDefault();
-
       const grid = document.getElementById('memberFinanceGrid');
       const link = document.querySelector('.detail-toggle');
       const isHidden = grid.classList.toggle('member-finance-grid--hidden');
-
-      if (isHidden) {
-        link.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-          Ver detalle
-        `;
-      } else {
-        link.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 15l-6-6-6 6"></path>
-          </svg>
-          Ocultar detalle
-        `;
-      }
+      link.innerHTML = isHidden
+        ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+           </svg> Ver detalle`
+        : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+             <path d="M18 15l-6-6-6 6"/>
+           </svg> Ocultar detalle`;
     }
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/grupos.js"></script>
+
 </body>
 </html>
