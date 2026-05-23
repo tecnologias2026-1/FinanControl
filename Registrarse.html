@@ -6,7 +6,7 @@
 <title>Crear Cuenta</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/Style_Registrarse.css">
+<link rel="stylesheet" href="css/Registrarse_style.css">
 
 </head>
 
@@ -69,48 +69,9 @@
 
 </div>
 
-
-<script>
-
-
-function togglePassword(id, icon){
-  const input = document.getElementById(id);
-
-  if(input.type === "password"){
-    input.type = "text";
-    icon.style.opacity = "0.5"; // opcional (indica activo)
-  } else {
-    input.type = "password";
-    icon.style.opacity = "1";
-  }
-}
-
-
-
-function crearCuenta() {
-  const nombre = document.getElementById('regNombre').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const pass1 = document.getElementById('regPassword').value.trim();
-  const pass2 = document.getElementById('regPassword2').value.trim();
-
-  if (!nombre || !email || !pass1 || !pass2) {
-    alert('Por favor completa todos los campos.');
-    return;
-  }
-
-  if (pass1.length < 6) {
-    alert('La contraseña debe tener al menos 6 caracteres.');
-    return;
-  }
-
-  if (pass1 !== pass2) {
-    alert('Las contraseñas no coinciden.');
-    return;
-  }
-
-  window.location.href = 'Dashboard.html';
-}
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/registrarse.js"></script>
 
 </body>
 </html>
