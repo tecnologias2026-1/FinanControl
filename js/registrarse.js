@@ -1,6 +1,5 @@
 // Mostrar / ocultar contraseña
 function togglePassword(id, icon) {
-
   const input = document.getElementById(id);
 
   if (input.type === "password") {
@@ -12,49 +11,71 @@ function togglePassword(id, icon) {
   }
 }
 
+// Crear cuenta conectada a Supabase
+async function crearCuenta() {
+  const nombre = document.getElementById("regNombre").value.trim();
+  const correo = document.getElementById("regEmail").value.trim();
+  const pass1 = document.getElementById("regPassword").value.trim();
+  const pass2 = document.getElementById("regPassword2").value.trim();
+  const check = document.getElementById("checkTerms").checked;
 
-// Crear cuenta
-function crearCuenta() {
-
-  const nombre = document.getElementById('regNombre').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const pass1 = document.getElementById('regPassword').value.trim();
-  const pass2 = document.getElementById('regPassword2').value.trim();
-  const check = document.getElementById('checkTerms').checked;
-
-  // Validaciones
-  if (!nombre || !email || !pass1 || !pass2) {
-    alert('Por favor completa todos los campos.');
+  if (!nombre || !correo || !pass1 || !pass2) {
+    alert("Por favor completa todos los campos.");
     return;
   }
 
   if (pass1.length < 6) {
-    alert('La contraseña debe tener al menos 6 caracteres.');
+    alert("La contraseña debe tener al menos 6 caracteres.");
     return;
   }
 
   if (pass1 !== pass2) {
-    alert('Las contraseñas no coinciden.');
+    alert("Las contraseñas no coinciden.");
     return;
   }
 
   if (!check) {
-    alert('Debes aceptar los términos y condiciones.');
+    alert("Debes aceptar los términos y condiciones.");
     return;
   }
 
-  // Crear objeto usuario
-  const usuario = {
-    nombre: nombre,
-    email: email,
-    password: pass1
-  };
+  // 1. Crear usuario en Authentication
+  const { data, error } = await supabaseClient.auth.signUp({
+    email: correo,
+    password: pass1,
+    options: {
+      data: {
+        nombre: nombre
+      }
+    }
+  });
 
-  // Guardar usuario (simulación de base de datos)
-  localStorage.setItem("usuarioRegistrado", JSON.stringify(usuario));
+  if (error) {
+    console.error("ERROR AUTH:", error);
+    alert("Error creando cuenta: " + error.message);
+    return;
+  }
 
-  alert("Cuenta creada correctamente");
+  // 2. Guardar usuario en tabla USUARIOS
+  const { data: insertData, error: insertError } = await supabaseClient
+    .from("USUARIOS")
+    .insert([
+      {
+        nombre: nombre,
+        correo: correo,
+        password: pass1
+      }
+    ])
+    .select();
 
-  // Redirigir a login
+  if (insertError) {
+    console.error("ERROR INSERT:", insertError);
+    alert("Error guardando usuario en la tabla: " + insertError.message);
+    return;
+  }
+
+  console.log("Usuario guardado en USUARIOS:", insertData);
+
+  alert("Cuenta creada correctamente.");
   window.location.href = "Iniciar.html";
 }
