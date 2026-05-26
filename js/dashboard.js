@@ -101,12 +101,12 @@ function obtenerMonto(t) {
 }
 
 function obtenerFecha(t) {
-
-  return new Date(
-    t.Fecha ||
-    t.fecha ||
-    t.created_at
-  );
+  const raw = t.Fecha || t.fecha || t.created_at;
+  if (typeof raw === "string" && /^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+    const [y, m, d] = raw.split("-").map(Number);
+    return new Date(y, m - 1, d);
+  }
+  return new Date(raw);
 }
 
 function obtenerCategoria(t) {
