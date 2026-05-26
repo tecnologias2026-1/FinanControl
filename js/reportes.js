@@ -261,11 +261,15 @@ async function cargarReportes() {
         const monto =
         Number(t.Monto);
 
-        const fecha =
-        new Date(t.Fecha);
-
-        const mes =
-        fecha.getMonth() + 1;
+        const raw = t.Fecha;
+        let fecha;
+        if (typeof raw === "string" && /^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+            const [y, m, d] = raw.split("-").map(Number); 
+            fecha = new Date(y, m - 1, d);
+        } else {
+            fecha = new Date(raw);
+        }
+        const mes = fecha.getMonth() + 1;
 
         if (
             t.Tipo.toLowerCase()
