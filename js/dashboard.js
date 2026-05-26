@@ -29,9 +29,11 @@ document.addEventListener("DOMContentLoaded", cargarDashboard);
 
 async function cargarDashboard() {
 
-  const usuario = JSON.parse(
-    localStorage.getItem("usuarioLogueado")
-  );
+ const usuario = JSON.parse(
+  localStorage.getItem("usuarioActual") ||
+  localStorage.getItem("usuarioLogueado") ||
+  "null"
+);
 
   if (!usuario) {
     window.location.href = "index.html";
@@ -45,10 +47,11 @@ async function cargarDashboard() {
     return;
   }
 
-  const { data, error } = await supabaseClient
-    .from("TRANSACCIONES")
-    .select("*")
-    .order("Fecha", { ascending: true });
+const { data, error } = await supabaseClient
+  .from("TRANSACCIONES")
+  .select("*")
+  .eq("usuario_id", usuario.id)
+  .order("Fecha", { ascending: true });
 
   console.log("TRANSACCIONES:", data);
   console.log("ERROR:", error);
