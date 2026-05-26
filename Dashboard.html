@@ -282,10 +282,11 @@
     document.getElementById("topbar-avatar").textContent = iniciales;
   }
 
-  function cerrarSesion() {
-    localStorage.removeItem("usuarioLogueado");
-    window.location.href = "index.html";
-  }
+function cerrarSesion() {
+  localStorage.removeItem("usuarioActual");
+  localStorage.removeItem("usuarioLogueado");
+  window.location.href = "index.html";
+}
 
   function toggleAcc(header) {
     const item = header.closest('.acc-item');
