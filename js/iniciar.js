@@ -30,13 +30,25 @@ async function iniciarSesion() {
     return;
   }
 
-  const usuario = {
-    id: data.user.id,
-    nombre: data.user.user_metadata.nombre || "Usuario",
-    correo: data.user.email
-  };
+const { data: usuarioTabla, error: errorUsuario } = await supabaseClient
+  .from("USUARIOS")
+  .select("*")
+  .eq("correo", correo)
+  .single();
 
-  localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
+if (errorUsuario || !usuarioTabla) {
+  alert("No se encontró el usuario en la tabla USUARIOS.");
+  return;
+}
+
+const usuario = {
+  id: usuarioTabla.id,
+  nombre: usuarioTabla.nombre,
+  correo: usuarioTabla.correo
+};
+
+localStorage.setItem("usuarioActual", JSON.stringify(usuario));
+localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
 
   alert("Inicio de sesión exitoso");
   window.location.href = "Dashboard.html";
